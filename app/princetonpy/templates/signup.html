@@ -1,0 +1,22 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Princeton Python User Group - Subscribe to announcements</title>
+    <meta name="description" content="Announcement subscription page">
+</head>
+
+<body>
+<form>
+    <form enctype="multipart/form-data" method="post" action="/newsletter/meeting-announcement/subscribe/">
+        {% csrf_token %}
+        <label for="id_email_field">E-mail:</label> <input type="email" name="email_field" required=""
+                                                           id="id_email_field">
+        <button id="id_submit" name="submit" value="Subscribe" type="submit">Subscribe</button>
+    </form>
+</form>
+</body>
+
+</html>

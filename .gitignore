@@ -1,2 +1,4 @@
-.env.prod
-.env.prod.db
+.env.prod*
+.env.staging*
+.env.dev.aws
+__pycache__/

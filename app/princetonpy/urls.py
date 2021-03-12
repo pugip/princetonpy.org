@@ -13,9 +13,22 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+
 from django.contrib import admin
-from django.urls import path
+from django.contrib.staticfiles import views
+from django.urls import path, include, re_path
+from django.views.generic import TemplateView
+
+from . import settings
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('tinymce/', include('tinymce.urls')),
+    re_path(r'^newsletter/', include('newsletter.urls')),
+    path('signup/', TemplateView.as_view(template_name='signup.html'))
 ]
+
+if settings.DEBUG:
+    NGINX_PAGES = settings.BASE_DIR / 'pages'
+    urlpatterns += re_path(r'^$', views.serve, kwargs={'path': 'index.html'}),

@@ -17,3 +17,7 @@ docker-compose -f docker-compose.prod.yml exec web python manage.py migrate --no
 ```commandline
 docker-compose -f docker-compose.prod.yml exec web python manage.py collectstatic --no-input --clear
 ```
+
+```commandline
+poetry export -f requirements.txt --output requirements.txt
+```
