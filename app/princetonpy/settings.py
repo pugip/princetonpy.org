@@ -24,6 +24,8 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 
 DEBUG = int(os.environ.get("DEBUG", default=0))
 
+LOCAL_ENV = int(os.environ.get("LOCAL_ENV", default=0))
+
 # 'DJANGO_ALLOWED_HOSTS' should be a single string of hosts with a space between each.
 # For example: 'DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1 [::1]'
 ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS", "").split(" ")
@@ -38,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
+    'django_ses',
     'tinymce',
     'sorl.thumbnail',
     'newsletter'
@@ -77,7 +80,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'princetonpy.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
@@ -91,7 +93,6 @@ DATABASES = {
         "PORT": os.environ.get("SQL_PORT", "5432"),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -111,7 +112,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
@@ -125,14 +125,13 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/staticfiles/'
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 STATICFILES_DIRS = []
-if DEBUG:
+if LOCAL_ENV:
     STATICFILES_DIRS.append(
         "/usr/src/app/pages"
     )
@@ -147,6 +146,9 @@ EMAIL_BACKEND = 'django_ses.SESBackend'
 # you need to specify a region, like so:
 # AWS_SES_REGION_NAME = 'us-west-2'
 # AWS_SES_REGION_ENDPOINT = 'email.us-west-2.amazonaws.com'
+
+AWS_SES_CONFIGURATION_SET = 'princetonpy-config-set'
+
 NEWSLETTER_RICHTEXT_WIDGET = "tinymce.widgets.TinyMCE"
 
 # Amount of seconds to wait between each email. Here 100ms is used.

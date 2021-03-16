@@ -2,3 +2,4 @@
 .env.staging*
 .env.dev.aws
 __pycache__/
+.idea/dataSources.xml

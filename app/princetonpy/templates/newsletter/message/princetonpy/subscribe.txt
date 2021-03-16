@@ -1,0 +1,9 @@
+{% load i18n %}
+{% if subscription.name %}
+{% blocktrans %}Hi{% endblocktrans %} {{subscription.name}},
+{% else %}
+{% blocktrans %}Hi{% endblocktrans %},
+{% endif %}
+
+If you would like to confirm your subscription, please follow this activation link:
+http://{{ domain }}{{ url }}

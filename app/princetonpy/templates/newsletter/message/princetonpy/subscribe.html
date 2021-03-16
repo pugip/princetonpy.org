@@ -1,0 +1,21 @@
+{% load i18n %}<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>{% blocktrans with title=newsletter.title %}Subscription to Princeton Python User Group announcements{% endblocktrans %}
+</title>
+</head>
+<body>
+<p>
+    {% if subscription.name %}
+        {% blocktrans %}Hi{% endblocktrans %} {{subscription.name}},
+    {% else %}
+        {% blocktrans %}Hi{% endblocktrans %},
+    {% endif %}
+</p>
+
+<p>{% blocktrans %}If you would like to confirm your subscription, please follow this activation link:{% endblocktrans %}</p>
+<p><a href="http://{{ site.domain }}{{ subscription.subscribe_activate_url }}">http://{{ site.domain }}{{ subscription.subscribe_activate_url }}</a></p>
+</body>
+</html>

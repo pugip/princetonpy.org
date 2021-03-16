@@ -1,22 +1,16 @@
-<!doctype html>
+{% extends "newsletter/common.html" %}
 
-<html lang="en">
+{% load i18n %}
 
-<head>
-    <meta charset="utf-8">
-    <title>Princeton Python User Group - Subscribe to announcements</title>
-    <meta name="description" content="Announcement subscription page">
-</head>
+{% block title %}{% trans "Sign up for announcements" %}{% endblock title %}
 
-<body>
-<form>
-    <form enctype="multipart/form-data" method="post" action="/newsletter/meeting-announcement/subscribe/">
+{% block body %}
+    <h1>Sign up for announcements</h1>
+    <p>We'll send you an email to announce upcoming meetings with details about topics, speakers, etc.</p>
+    <form enctype="multipart/form-data" method="post" action="/newsletter/princetonpy/subscribe/">
         {% csrf_token %}
         <label for="id_email_field">E-mail:</label> <input type="email" name="email_field" required=""
                                                            id="id_email_field">
         <button id="id_submit" name="submit" value="Subscribe" type="submit">Subscribe</button>
     </form>
-</form>
-</body>
-
-</html>
+{% endblock body %}

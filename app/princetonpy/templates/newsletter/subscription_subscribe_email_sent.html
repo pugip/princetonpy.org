@@ -5,7 +5,8 @@
 {% block title %}{% trans "Newsletter subscribe" %}{% endblock title %}
 
 {% block body %}
-    <h1>{% trans "Newsletter subscribe" %} {{ newsletter.title }}</h1>
+    <h1>{% trans "Email sent for" %} {{ newsletter.title }}</h1>
 
-    <p>{% trans "Your subscription request was successfully received and an activation email has been sent to you. In that email you will find a link which you need to follow in order to activate your subscription." %}</p>
+    <p>{% trans "An activation email has been sent to you." %}</p>
+    <p>{% trans "Follow the link in the email to activate your subscription." %}</p>
 {% endblock body %}

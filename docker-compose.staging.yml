@@ -18,6 +18,7 @@ services:
       - 8000
     env_file:
       - .env.staging.web
+      - .env.staging.aws
     depends_on:
       - db
   nginx:
