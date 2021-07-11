@@ -12,5 +12,7 @@ then
 fi
 
 python manage.py collectstatic -c --noinput
+python manage.py makemigrations
+python manage.py migrate
 
 exec "$@"
