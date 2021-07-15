@@ -36,8 +36,14 @@
     2nd floor<br>
     Princeton, <abbr title="New Jersey">NJ</abbr> 08542
 </p>
-<p>Otherwise - our video chat (Google Meet):</p>
-<p><a href="https://meet.google.com/swj-xuzy-xjb">https://meet.google.com/swj-xuzy-xjb</a></p>
+<p>Otherwise online at:</p>
+{% if link_entry.link and link_entry.link_text %}
+    <p><a href="{{ link_entry.link }}">{{ link_entry.link_text }}</a></p>
+{% elif link_entry.link %}
+    <p><a href="{{ link_entry.link }}">{{ link_entry.link }}</a></p>
+{% else %}
+    <p>Meeting link TBA!</p>
+{% endif %}
 </section>
 
 <section>
