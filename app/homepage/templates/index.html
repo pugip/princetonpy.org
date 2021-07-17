@@ -10,51 +10,61 @@
 <body>
 <h1>Princeton Python User Group</h1>
 <section>
-<h2>Who we are:</h2>
-<p>We're a group that meets on the second Monday of every month, usually around 7-8:30pm.</p>
-<p>Whether you've never programmed, or have been programming for a long time - please join us!</p>
-<p>The group is obviously Python-centric, but anything in the realm of open-source and programming is fair game too.</p>
-<p>We're always looking for people to present, so if you have something you'd like to talk about, please let us
-    know!</p>
-<p>Tell us in advance and we can announce the topic beforehand, otherwise we always have an open floor for
-    discussion.</p>
-<p>There really isn't a high bar to participate; this is great space to bring up things like:</p>
-<ul>
-  <li>projects - finished or in progress!</li>
-  <li>cool code snippets or language features</li>
-  <li>a problem you're stumped by</li>
-  <li>an interesting library</li>
-</ul>
+    <h2>Who we are:</h2>
+    <p>We're a group that meets on the second Monday of every month, usually around 7-8:30pm.</p>
+    <p>Whether you've never programmed, or have been programming for a long time - please join us!</p>
+    <p>The group is obviously Python-centric, but anything in the realm of open-source and programming is fair game
+        too.</p>
+    <p>We're always looking for people to present, so if you have something you'd like to talk about, please let us
+        know!</p>
+    <p>Tell us in advance and we can announce the topic beforehand, otherwise we always have an open floor for
+        discussion.</p>
+    <p>There really isn't a high bar to participate; this is great space to bring up things like:</p>
+    <ul>
+        <li>projects - finished or in progress!</li>
+        <li>cool code snippets or language features</li>
+        <li>a problem you're stumped by</li>
+        <li>an interesting library</li>
+    </ul>
 </section>
 
 <section>
-<h2>Location:</h2>
-<p>When conditions permit in-person meetings:</p>
-<p translate="no">
-    <a href="https://tigerlabs.co">Tigerlabs</a><br>
-    252 Nassau Street<br>
-    2nd floor<br>
-    Princeton, <abbr title="New Jersey">NJ</abbr> 08542
-</p>
-<p>Otherwise online at:</p>
-{% if link_entry.link and link_entry.link_text %}
-    <p><a href="{{ link_entry.link }}">{{ link_entry.link_text }}</a></p>
-{% elif link_entry.link %}
-    <p><a href="{{ link_entry.link }}">{{ link_entry.link }}</a></p>
-{% else %}
-    <p>Meeting link TBA!</p>
-{% endif %}
+    <h2>Location:</h2>
+    <p>When conditions permit in-person meetings:</p>
+    <p translate="no">
+        <a href="https://tigerlabs.co">Tigerlabs</a><br>
+        252 Nassau Street<br>
+        2nd floor<br>
+        Princeton, <abbr title="New Jersey">NJ</abbr> 08542
+    </p>
+    <p>Otherwise online at:</p>
+    {% if link_entry.link and link_entry.link_text %}
+        <p><a href="{{ link_entry.link }}">{{ link_entry.link_text }}</a></p>
+    {% elif link_entry.link %}
+        <p><a href="{{ link_entry.link }}">{{ link_entry.link }}</a></p>
+    {% else %}
+        <p>Meeting link TBA!</p>
+    {% endif %}
 </section>
 
 <section>
-<h2>Stay informed:</h2>
-<p>Subscribe and we'll send a monthly email in advance of the meeting for any planned topics, speakers, etc.:</p>
-<p><a href="signup/">Sign up here</a></p>
+    <h2>Stay informed:</h2>
+    <p>Subscribe and we'll send a monthly email in advance of the meeting for any planned topics, speakers, etc.:</p>
+    <p><a href="signup/">Sign up here</a></p>
 </section>
 
 <section>
-<h2>Chat with us:</h2>
-<p><a href="https://matrix.to/#/+ppug:matrix.org">https://matrix.to/#/+ppug:matrix.org</a></p>
+    <h2>Chat with us:</h2>
+    <p><a href="https://matrix.to/#/+ppug:matrix.org">https://matrix.to/#/+ppug:matrix.org</a></p>
+</section>
+
+<section>
+    <p>
+        <a href="https://www.djangoproject.com/">
+            <img src="https://www.djangoproject.com/m/img/badges/djangomade124x25.gif" border="0"
+                 alt="Made with Django." title="Made with Django."/>
+        </a>
+    </p>
 </section>
 
 </body>
