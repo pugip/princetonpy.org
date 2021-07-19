@@ -21,3 +21,11 @@ docker-compose -f docker-compose.prod.yml exec web python manage.py collectstati
 ```commandline
 poetry export -f requirements.txt --output requirements.txt
 ```
+
+Redeploy the Django server (in prod):
+> This avoids redeploying the proxy containers that request certs.
+> 
+> If you exceed the cert request limit, Let's Encrypt rejects prod cert requests for a week or so.
+```commandline
+sudo docker-compose -f docker-compose.prod.yml up -d --force-recreate --build web
+```
