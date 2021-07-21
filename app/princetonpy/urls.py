@@ -15,18 +15,19 @@ Including another URLconf
 """
 from django.contrib.auth.admin import admin
 from django.urls import path, include, re_path
+from django.views.decorators.cache import cache_page
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import TemplateView
 from django_ses.views import handle_bounce
 from homepage.views import Home
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('tinymce/', include('tinymce.urls')),
-    re_path(r'^newsletter/', include('newsletter.urls')),
-    path('signup/', TemplateView.as_view(template_name='signup.html')),
-    path('', Home.as_view()),
-    re_path(r'^ses/bounce/$', csrf_exempt(handle_bounce)),
+    path("admin/", admin.site.urls),
+    path("tinymce/", include("tinymce.urls")),
+    re_path(r"^newsletter/", include("newsletter.urls")),
+    path("signup/", TemplateView.as_view(template_name="signup.html")),
+    path("", cache_page(600)(Home.as_view())),
+    re_path(r"^ses/bounce/$", csrf_exempt(handle_bounce)),
 ]
 
 # if settings.LOCAL_ENV:

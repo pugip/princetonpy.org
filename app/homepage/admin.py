@@ -5,7 +5,7 @@ from homepage.models import MeetingLink
 
 
 class MeetingLinkAdmin(admin.ModelAdmin):
-    list_display = ('link', 'link_text')
+    list_display = ("link", "link_text")
 
 
 admin.site.register(MeetingLink, MeetingLinkAdmin)
