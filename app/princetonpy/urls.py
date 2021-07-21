@@ -26,7 +26,7 @@ urlpatterns = [
     path("tinymce/", include("tinymce.urls")),
     re_path(r"^newsletter/", include("newsletter.urls")),
     path("signup/", TemplateView.as_view(template_name="signup.html")),
-    path("", cache_page(600)(Home.as_view())),
+    path("", cache_page(120, cache="default")(Home.as_view())),
     re_path(r"^ses/bounce/$", csrf_exempt(handle_bounce)),
 ]
 

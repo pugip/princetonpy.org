@@ -11,7 +11,7 @@ services:
     build:
       context: ./app
       dockerfile: Dockerfile.prod
-    command: gunicorn princetonpy.wsgi:application --bind 0.0.0.0:8000
+    command: gunicorn -w 3 princetonpy.wsgi:application --bind 0.0.0.0:8000
     volumes:
       - static_volume:/home/app/web/staticfiles
     expose:
