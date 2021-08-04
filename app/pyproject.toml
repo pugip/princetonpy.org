@@ -7,14 +7,13 @@ license = "MIT License"
 
 [tool.poetry.dependencies]
 python = "^3.9"
-Django = "^3.1.7"
+Django = "^3.2"
 psycopg2-binary = "^2.8.6"
-gunicorn = {extras = ["gevent"], version = "^20.1.0"}
 django-ses = {extras = ["bounce"], version = "^1.0.3"}
 django-newsletter = "^0.9.1"
 django-tinymce = "^3.2.0"
 sorl-thumbnail = "^12.7.0"
-psycogreen = "^1.0.2"
+Hypercorn = "^0.11.2"
 
 [tool.poetry.dev-dependencies]
 

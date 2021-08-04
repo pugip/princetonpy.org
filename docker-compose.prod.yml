@@ -11,7 +11,7 @@ services:
     build:
       context: ./app
       dockerfile: Dockerfile.prod
-    command: gunicorn -k gevent -w 3 princetonpy.wsgi:application --bind 0.0.0.0:8000
+    command: hypercorn princetonpy.asgi:application --bind 0.0.0.0:8000
     volumes:
       - static_volume:/home/app/web/staticfiles
     expose:
@@ -27,7 +27,7 @@ services:
       dockerfile: Dockerfile
     restart: always
     ports:
-      - 8000
+      - "8000"
     env_file:
       - .env.prod.nginx
     volumes:
@@ -42,8 +42,8 @@ services:
       dockerfile: Dockerfile
     restart: always
     ports:
-      - 443:443
-      - 80:80
+      - "443:443"
+      - "80:80"
     volumes:
       - certs:/etc/nginx/certs
       - html:/usr/share/nginx/html
