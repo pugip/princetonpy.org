@@ -1,5 +1,6 @@
 from django.views.generic import TemplateView
 from homepage.models import MeetingLink
+from homepage.schedule import next_second_monday
 
 
 class Home(TemplateView):
@@ -12,4 +13,5 @@ class Home(TemplateView):
             context["link_entry"] = link_entry
         except MeetingLink.DoesNotExist:
             pass
+        context["next_meeting_date"] = next_second_monday()
         return context
