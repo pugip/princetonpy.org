@@ -28,14 +28,17 @@ def next_second_monday(today=None):
     if today is None:
         today = date.today()
 
-    second_monday_this_month = first_monday_of_month(today.month, today.year) + timedelta(7)
+    second_monday_this_month = first_monday_of_month(
+        today.month, today.year
+    ) + timedelta(7)
     if second_monday_this_month < today:
         next_month = (1 + today.month) if today.month < 12 else 1
         year_of_next_month = today.year if today.month < 12 else 1 + today.year
-        second_monday_of_next_month = first_monday_of_month(next_month, year_of_next_month) + timedelta(7)
+        second_monday_of_next_month = first_monday_of_month(
+            next_month, year_of_next_month
+        ) + timedelta(7)
         result = second_monday_of_next_month
     else:
         result = second_monday_this_month
     # convert to date if it's a datetime.
-    return getattr(result, 'date', result)
-
+    return getattr(result, "date", result)

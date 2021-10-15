@@ -1,5 +1,6 @@
-.env.dev*
+.env.*.aws
 .env.prod*
 .env.staging*
 __pycache__/
 .idea/dataSources.xml
+caddy/certs/

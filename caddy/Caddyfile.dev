@@ -1,0 +1,17 @@
+{
+  debug
+}
+
+localhost
+
+tls /certs/localhost.pem /certs/localhost-key.pem
+
+@notStatic {
+    not {
+		file {
+			try_files {path} {path}.html
+		}
+	}
+}
+reverse_proxy @notStatic web:8000
+file_server
