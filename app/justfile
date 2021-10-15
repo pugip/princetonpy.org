@@ -1,0 +1,4 @@
+makemigrations:
+    ENV_PATH=../.env.local python manage.py makemigrations
+migrate:
+    ENV_PATH=../.env.local python manage.py migrate

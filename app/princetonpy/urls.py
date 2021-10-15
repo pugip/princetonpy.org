@@ -14,12 +14,14 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib.auth.admin import admin
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.urls import path, include, re_path
 from django.views.decorators.cache import cache_page
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import TemplateView
 from django_ses.views import handle_bounce
 from homepage.views import Home
+from meetings.views import meetings_list, meeting_page, next_meeting_page
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -27,8 +29,14 @@ urlpatterns = [
     re_path(r"^newsletter/", include("newsletter.urls")),
     path("signup/", TemplateView.as_view(template_name="signup.html")),
     path("", cache_page(120)(Home.as_view())),
+    path("meetings/", meetings_list),
+    path("meeting/<int:pk>/", meeting_page),
+    path("meeting/", meeting_page),
+    path("next-meeting/", next_meeting_page),
     re_path(r"^ses/bounce/$", csrf_exempt(handle_bounce)),
 ]
+
+urlpatterns += staticfiles_urlpatterns()
 
 # if settings.LOCAL_ENV:
 #     NGINX_PAGES = settings.BASE_DIR / 'pages'

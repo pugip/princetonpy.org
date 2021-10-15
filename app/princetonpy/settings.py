@@ -10,30 +10,39 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
+import environ
 import os
 from pathlib import Path
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
+# Set the project base directory
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+
+BASE_DIR = Path(__file__).resolve().parents[2]
+
+# Take environment variables from .env file
+env = environ.Env()
+use_file = env.bool("ENV_FILE")
+if use_file and use_file != env.NOTSET:
+    env_file = env.str("ENV_PATH", ".env")
+    env.read_env(env_file)
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get("SECRET_KEY")
+SECRET_KEY = env.str("SECRET_KEY", default="testing")
 
-DEBUG = int(os.environ.get("DEBUG", default=0))
+DEBUG = env.bool("DEBUG", default=False)
 
-LOCAL_ENV = int(os.environ.get("LOCAL_ENV", default=0))
+LOCAL_ENV = env.bool("LOCAL_ENV", default=False)
 
 # 'DJANGO_ALLOWED_HOSTS' should be a single string of hosts with a space between each.
 # For example: 'DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1 [::1]'
-ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS", "").split(" ")
+ALLOWED_HOSTS = env.str("DJANGO_ALLOWED_HOSTS", "").split(" ")
 
 # Application definition
 
 INSTALLED_APPS = [
     "homepage",
+    "meetings",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -135,11 +144,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-STATIC_URL = "/staticfiles/"
-STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+STATIC_URL = "/static/"
+
+DEFAULT_STATIC_ROOT = Path(os.path.join(BASE_DIR, "static"))
+STATIC_ROOT = env.path("BASE_DIR", DEFAULT_STATIC_ROOT)
 STATICFILES_DIRS = []
-if LOCAL_ENV:
-    STATICFILES_DIRS.append("/usr/src/app/pages")
+# if LOCAL_ENV:
+#     STATICFILES_DIRS.append("/usr/src/app/pages")
 
 # SSL setting
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")

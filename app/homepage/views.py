@@ -1,6 +1,6 @@
 from django.views.generic import TemplateView
 from homepage.models import MeetingLink
-from homepage.schedule import next_second_monday
+from schedule import next_second_monday
 
 
 class Home(TemplateView):

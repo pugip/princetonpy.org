@@ -2,27 +2,49 @@ version: '3.7'
 
 services:
   web:
-    build: ./app
-    command: python manage.py runserver 0.0.0.0:8000
+    build:
+      context: ./app
+      dockerfile: Dockerfile.prod
+    command: hypercorn princetonpy.asgi:application --bind 0.0.0.0:8000
     volumes:
-      - ./app:/usr/src/app/
+      - princetonpy_static:/home/app/web/static
     ports:
       - "8000:8000"
     env_file:
-      - ./.env.dev
-      - ./.env.dev.aws
+      - .env.docker
+      - .env.docker.aws
     depends_on:
       - db
   db:
     image: postgres:12.0-alpine
     ports:
-      - "5432:5432"
+      - "5435:5432"
     volumes:
-      - postgres_data_dev:/var/lib/postgresql/data/
+      - princetonpy_postgres_dev:/var/lib/postgresql/data/
     environment:
-      - POSTGRES_USER=hello_django
-      - POSTGRES_PASSWORD=hello_django
-      - POSTGRES_DB=hello_django_dev
+      - POSTGRES_USER=dev
+      - POSTGRES_PASSWORD=dev
+      - POSTGRES_DB=princetonpy
+  caddy:
+    image: caddy
+    ports:
+      - "443:443"
+      - "80:80"
+    depends_on:
+      - web
+    volumes:
+      - ./caddy/Caddyfile.dev:/etc/caddy/Caddyfile
+      - princetonpy_static:/princetonpy_static
+      - ./caddy/srv:/srv
+      - ./caddy/certs:/certs
+      - caddy_data:/data
+      - caddy_config:/config
 
 volumes:
-  postgres_data_dev:
+  princetonpy_postgres_dev:
+    external: true
+  princetonpy_static:
+    external: true
+  caddy_data:
+    external: true
+  caddy_config:
