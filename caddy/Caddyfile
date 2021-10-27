@@ -1,17 +1,15 @@
 www.princetonpy.org {
-
+    @notStatic {
+        not {
+            file {
+                try_files {path} {path}.html
+            }
+        }
+    }
+    reverse_proxy @notStatic web:8000
+    file_server
 }
 
 princetonpy.org {
 	redir https://www.princetonpy.org{uri}
 }
-
-@notStatic {
-    not {
-		file {
-			try_files {path} {path}.html
-		}
-	}
-}
-reverse_proxy @notStatic web:8000
-file_server
