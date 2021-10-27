@@ -147,7 +147,7 @@ USE_TZ = True
 STATIC_URL = "/static/"
 
 DEFAULT_STATIC_ROOT = Path(os.path.join(BASE_DIR, "static"))
-STATIC_ROOT = env.path("BASE_DIR", DEFAULT_STATIC_ROOT)
+STATIC_ROOT = env.path("STATIC_ROOT", DEFAULT_STATIC_ROOT)
 STATICFILES_DIRS = []
 # if LOCAL_ENV:
 #     STATICFILES_DIRS.append("/usr/src/app/pages")
