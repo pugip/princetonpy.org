@@ -6,8 +6,8 @@ from tinymce.models import HTMLField
 class Meeting(models.Model):
     date = models.DateTimeField()
     title = models.CharField(max_length=140)
-    short_description = HTMLField()
-    meeting_text = HTMLField()
+    short_description = HTMLField(default="")
+    meeting_text = HTMLField(default="")
     announcement = models.ForeignKey(Message, on_delete=models.SET_NULL, null=True)
 
     @property
