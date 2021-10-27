@@ -4,7 +4,7 @@ services:
   db:
     image: postgres:12.0-alpine
     volumes:
-      - postgres_data:/var/lib/postgresql/data/
+      - princetonpy_postgres_prod:/var/lib/postgresql/data/
     env_file:
       - .env.prod.db
   web:
@@ -13,7 +13,8 @@ services:
       dockerfile: Dockerfile.prod
     command: hypercorn princetonpy.asgi:application --bind 0.0.0.0:8000
     volumes:
-      - static_volume:/home/app/web/staticfiles
+      - ./app:/home/app/web
+      - princetonpy_static:/home/app/web/static
     expose:
       - 8000
     env_file:
@@ -21,41 +22,25 @@ services:
       - .env.prod.aws
     depends_on:
       - db
-  nginx:
-    build:
-      context: ./nginx
-      dockerfile: Dockerfile
-    restart: always
-    ports:
-      - "8000"
-    env_file:
-      - .env.prod.nginx
-    volumes:
-      - static_volume:/var/www/princetonpy.org/staticfiles
-    depends_on:
-      - web
-    command: [nginx-debug, '-g', 'daemon off;']
-  nginx-proxy:
-    container_name: nginx-proxy
-    build:
-      context: ./nginx-proxy
-      dockerfile: Dockerfile
-    restart: always
+  caddy:
+    image: caddy
     ports:
       - "443:443"
       - "80:80"
-    volumes:
-      - certs:/etc/nginx/certs
-      - html:/usr/share/nginx/html
-      - vhost:/etc/nginx/vhost.d
-      - /var/run/docker.sock:/tmp/docker.sock:ro
     depends_on:
-      - nginx
+      - web
+    volumes:
+      - ./caddy/Caddyfile:/etc/caddy/Caddyfile
+      - princetonpy_static:/princetonpy_static
+      - ./caddy/srv:/srv
+      - caddy_data:/data
+      - caddy_config:/config
 
 volumes:
-  postgres_data:
-  static_volume:
-  media_volume:
-  certs:
-  html:
-  vhost:
+  princetonpy_postgres_prod:
+    external: true
+  princetonpy_static:
+    external: true
+  caddy_data:
+    external: true
+  caddy_config:
