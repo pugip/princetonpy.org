@@ -1,4 +1,3 @@
-import pytz
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.http import HttpResponse
 from django.shortcuts import render
@@ -11,14 +10,14 @@ from schedule import next_second_monday
 def meetings_list(request):
     meeting_list = Meeting.objects.all()
     page = request.GET.get("page", 1)
-    paginator = Paginator(meeting_list, 10)
+    paginator = Paginator(meeting_list, 40)
     try:
         meetings = paginator.page(page)
     except PageNotAnInteger:
         meetings = paginator.page(1)
     except EmptyPage:
         meetings = paginator.page(paginator.num_pages)
-    context = {"meetings": meetings}
+    context = {"meetings": meetings, "page_title": "Meeting list"}
     return render(request, "meeting_list.html", context)
 
 
@@ -36,7 +35,7 @@ def _render_meeting(meeting: Meeting, request):
 
 def next_meeting_page(request):
     try:
-        meeting = Meeting.objects.order_by("-date").get()
+        meeting = Meeting.objects.order_by("-date").first()
     except Meeting.DoesNotExist:
         return _meeting_tba(request)
     if meeting.date.date() < datetime.now().date():

@@ -5,7 +5,8 @@
     <option name="PARENT_ENVS" value="true" />
     <envs>
       <env name="PYTHONUNBUFFERED" value="1" />
-      <env name="ENV_FILE" value="../.env.local" />
+      <env name="ENV_FILE" value="True" />
+      <env name="ENV_PATH" value="../.env.local" />
     </envs>
     <option name="SDK_HOME" value="$PROJECT_DIR$/app/.venv/bin/python" />
     <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/app" />

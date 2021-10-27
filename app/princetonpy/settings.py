@@ -38,11 +38,14 @@ LOCAL_ENV = env.bool("LOCAL_ENV", default=False)
 # For example: 'DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1 [::1]'
 ALLOWED_HOSTS = env.str("DJANGO_ALLOWED_HOSTS", "").split(" ")
 
+BACKUP_PATH = env.str("BACKUP_PATH", None)
+
 # Application definition
 
 INSTALLED_APPS = [
     "homepage",
     "meetings",
+    "customadmin",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -54,6 +57,7 @@ INSTALLED_APPS = [
     "tinymce",
     "sorl.thumbnail",
     "newsletter",
+    "django_crontab",
 ]
 
 SITE_ID = 2
@@ -184,3 +188,5 @@ CACHES = {
         "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
     }
 }
+
+CRONJOBS = [("0 0 * * *", "princetonpy.cron.backup.save_users")]
