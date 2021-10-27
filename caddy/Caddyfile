@@ -7,7 +7,15 @@ www.princetonpy.org {
         }
     }
     reverse_proxy @notStatic web:8000
-    file_server
+
+	handle_path /static/* {
+		root * /princetonpy_static
+		file_server
+	}
+
+    file_server {
+        root /srv
+    }
 }
 
 princetonpy.org {
