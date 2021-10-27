@@ -7,18 +7,18 @@ import tinymce.models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('meetings', '0004_alter_meeting_announcement'),
+        ("meetings", "0004_alter_meeting_announcement"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='meeting',
-            name='short_description',
-            field=tinymce.models.HTMLField(default=''),
+            model_name="meeting",
+            name="short_description",
+            field=tinymce.models.HTMLField(default=""),
         ),
         migrations.AlterField(
-            model_name='meeting',
-            name='meeting_text',
-            field=tinymce.models.HTMLField(default=''),
+            model_name="meeting",
+            name="meeting_text",
+            field=tinymce.models.HTMLField(default=""),
         ),
     ]

@@ -14,7 +14,7 @@
 
 <p><u>Date</u>: {{ meeting.date_str }}</p>
 
-{% if not message.articles.all %}
+{% if not message.articles.all and not meeting.no_announcement %}
     <p>Stay tuned for updates!</p>
 {% endif %}
 {% for article in message.articles.all %}
