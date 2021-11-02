@@ -15,6 +15,7 @@ services:
     volumes:
       - ./app:/home/app/web
       - princetonpy_static:/home/app/web/static
+      - ../prod_backup:/prod_backup
     expose:
       - 8000
     env_file:

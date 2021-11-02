@@ -8,7 +8,7 @@ from schedule import next_second_monday
 
 
 def meetings_list(request):
-    meeting_list = Meeting.objects.all()
+    meeting_list = Meeting.objects.order_by("-date")
     page = request.GET.get("page", 1)
     paginator = Paginator(meeting_list, 40)
     try:
