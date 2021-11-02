@@ -18,7 +18,8 @@ from pathlib import Path
 # Set the project base directory
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
-BASE_DIR = Path(__file__).resolve().parents[2]
+BASE_DIR = Path(__file__).resolve().parents[1]
+REPO_DIR = BASE_DIR.parent
 
 # Take environment variables from .env file
 env = environ.Env()
