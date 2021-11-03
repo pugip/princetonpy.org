@@ -50,3 +50,9 @@ scp -r princetonpy_subscriptions.csv user@host:/path
 sudo docker-compose -f docker-compose.prod.yml run web sh
 python manage.py subscriptions import ./princetonpy_subscriptions.csv
 ```
+
+### Access DB
+```commandline
+sudo docker-compose -f docker-compose.prod.yml exec db psql -U postgres -W princetonpy_prod
+select * from django_site;
+```

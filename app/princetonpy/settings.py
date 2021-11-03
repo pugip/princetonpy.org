@@ -190,4 +190,7 @@ CACHES = {
     }
 }
 
-CRONJOBS = [("0 0 * * *", "princetonpy.cron.backup.save_users")]
+CRONJOBS = [
+    ("0 0 * * *", "princetonpy.cron.backup.save_users"),
+    ("*/5 * * * *", "django.core.management.call_command", ["submit_newsletter"]),
+]
