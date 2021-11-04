@@ -14,7 +14,6 @@ import environ
 import os
 from pathlib import Path
 
-
 # Set the project base directory
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
@@ -189,6 +188,8 @@ CACHES = {
         "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
     }
 }
+
+CRONTAB_COMMAND_PREFIX = env.str("CRONTAB_COMMAND_PREFIX", "")
 
 CRONJOBS = [
     ("0 0 * * *", "princetonpy.cron.backup.save_users"),

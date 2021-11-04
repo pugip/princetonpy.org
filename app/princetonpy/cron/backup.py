@@ -14,10 +14,13 @@ def save_users():
     date = datetime.now().date()
     formatted_date = date.isoformat()
     subscribers_folder = Path(BACKUP_PATH) / "subscribers"
-    save_path = subscribers_folder / formatted_date
+    save_path = subscribers_folder / f"{formatted_date}.csv"
+    save_path.parent.mkdir(parents=True, exist_ok=True)
     with open(save_path, "w") as f:
         csv_file = csv.writer(f, delimiter=",")
         for subscriber in subscriptions:
-            email = subscriber.get_email
-            name = subscriber.get_name
-            csv_file.writerow([name, email])
+            email = subscriber.get_email()
+            name = subscriber.get_name()
+            newsletter_title = subscriber.newsletter.title
+            subscribe_date = subscriber.subscribe_date.date()
+            csv_file.writerow([name, email, newsletter_title, subscribe_date])
