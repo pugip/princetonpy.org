@@ -17,8 +17,8 @@ python manage.py migrate
 
 if [ "$1" = 'hypercorn princetonpy.asgi:application --bind 0.0.0.0:8000' ]; then
   cron
-  crontab -u django /home/app/crontab
   crontab -r
+  echo -n "" | crontab -
   python manage.py crontab add
 fi
 
