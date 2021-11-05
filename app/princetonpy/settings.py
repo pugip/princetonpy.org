@@ -57,7 +57,6 @@ INSTALLED_APPS = [
     "tinymce",
     "sorl.thumbnail",
     "newsletter",
-    "django_crontab",
 ]
 
 SITE_ID = 3

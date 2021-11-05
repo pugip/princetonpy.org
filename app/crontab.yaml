@@ -1,0 +1,10 @@
+jobs:
+  - name: submit-newsletter
+    command: python manage.py submit_newsletter
+    schedule: "*/5 * * * *"
+  - name: backup-users
+    command: python -c 'from princetonpy.cron.backup import *; save_users()'
+    environment:
+      - key: PYTHONPATH
+        value: /home/app/web
+    schedule: "0 0 * * *"

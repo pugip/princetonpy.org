@@ -15,11 +15,4 @@ python manage.py collectstatic -c --noinput
 python manage.py makemigrations
 python manage.py migrate
 
-if [ "$*" = 'hypercorn princetonpy.asgi:application --bind 0.0.0.0:8000' ]; then
-  cron
-  crontab -r
-  echo -n "" | crontab -
-  python manage.py crontab add
-fi
-
 exec "$@"

@@ -23,6 +23,19 @@ services:
       - .env.prod.aws
     depends_on:
       - db
+  cron:
+    build:
+      context: ./app
+      dockerfile: Dockerfile-cron.prod
+    command: yacron -c /home/app/web/crontab.yaml
+    volumes:
+      - ./app:/home/app/web
+      - ../prod_backup:/prod_backup
+    env_file:
+      - .env.prod.web
+      - .env.prod.aws
+    depends_on:
+      - web
   caddy:
     image: caddy
     ports:
