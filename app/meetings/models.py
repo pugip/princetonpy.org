@@ -8,11 +8,11 @@ from tinymce.models import HTMLField
 
 class Meeting(models.Model):
     date = models.DateTimeField(null=True)
-    title = models.CharField(max_length=140)
-    short_description = HTMLField(default="")
-    meeting_text = HTMLField(default="")
+    title = models.CharField(max_length=140, default="", blank=True)
+    short_description = HTMLField(default="", blank=True)
+    meeting_text = HTMLField(default="", blank=True)
     no_announcement = models.BooleanField(default=False)
-    announcement = models.ForeignKey(Message, on_delete=models.SET_NULL, null=True)
+    announcement = models.ForeignKey(Message, on_delete=models.SET_NULL, null=True, blank=True)
 
     @property
     def date_slug(self) -> Optional[str]:
