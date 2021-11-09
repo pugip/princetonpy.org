@@ -19,6 +19,8 @@ def save_users():
     with open(save_path, "w") as f:
         csv_file = csv.writer(f, delimiter=",")
         for subscriber in subscriptions:
+            if not subscriber.subscribed:
+                continue
             email = subscriber.get_email()
             name = subscriber.get_name()
             newsletter_title = subscriber.newsletter.title
