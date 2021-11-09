@@ -64,6 +64,8 @@ COPY . $APP_HOME
 # chown all the files to the app user
 RUN mkdir -p ./static
 RUN chown -R app:app $APP_HOME
+RUN mkdir -p /prod_backup
+RUN chown -R app:app /prod_backup
 
 # change to the app user
 USER app

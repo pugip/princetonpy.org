@@ -22,5 +22,8 @@ def save_users():
             email = subscriber.get_email()
             name = subscriber.get_name()
             newsletter_title = subscriber.newsletter.title
-            subscribe_date = subscriber.subscribe_date.date()
+            if subscriber.subscribe_date:
+                subscribe_date = subscriber.subscribe_date.date()
+            else:
+                subscribe_date = None
             csv_file.writerow([name, email, newsletter_title, subscribe_date])
