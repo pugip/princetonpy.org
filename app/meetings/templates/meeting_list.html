@@ -6,6 +6,21 @@
     <title>Meetings</title>
     <meta name="description" content="PPUG meetings">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<style>
+		/* We dont yet seem to have a place for css in the repo--am I missing it?  This patch fixes the pagination of meetings, but the css doesnt belong here.  Both of these should be included somewhere in django.  */
+		.pagination li {
+			display: inline;
+		}
+		/* More on "sr-only" at https://webaim.org/techniques/css/invisiblecontent/ */
+		.sr-only {
+			position:absolute;
+			left:-10000px;
+			top:auto;
+			width:1px;
+			height:1px;
+			overflow:hidden;
+		}
+	</style>
 </head>
 
 <body>
