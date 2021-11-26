@@ -43,7 +43,7 @@ RUN apt-get install -y netcat
 RUN mkdir -p /home/app
 
 # create the app user
-RUN groupadd -r app && useradd --no-log-init -r -g app app
+RUN groupadd -r -g 1001 app && useradd app --no-log-init -r -u 1001 -g 1001
 
 # create the appropriate directories
 ENV HOME=/home/app
@@ -63,10 +63,10 @@ COPY . $APP_HOME
 
 # chown all the files to the app user
 RUN mkdir -p ./static
-RUN chown -R app:app $APP_HOME
+RUN chown -R 1001:1001 $APP_HOME
 
 # change to the app user
-USER app
+USER 1001:1001
 
 # run entrypoint.prod.sh
 ENTRYPOINT ["/home/app/web/entrypoint.prod.sh"]
