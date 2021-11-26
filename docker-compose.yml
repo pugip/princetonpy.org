@@ -11,7 +11,7 @@ services:
     ports:
       - "8000:8000"
     env_file:
-      - .env.docker
+      - .env.docker.web
       - .env.docker.aws
     depends_on:
       - db
@@ -21,10 +21,8 @@ services:
       - "5435:5432"
     volumes:
       - princetonpy_postgres_dev:/var/lib/postgresql/data/
-    environment:
-      - POSTGRES_USER=dev
-      - POSTGRES_PASSWORD=dev
-      - POSTGRES_DB=princetonpy
+    env_file:
+      - .env.docker.db
   caddy:
     image: caddy
     ports:
@@ -33,7 +31,7 @@ services:
     depends_on:
       - web
     volumes:
-      - ./caddy/Caddyfile.dev:/etc/caddy/Caddyfile
+      - ./caddy/Caddyfile.docker:/etc/caddy/Caddyfile
       - princetonpy_static:/princetonpy_static
       - ./caddy/srv:/srv
       - ./caddy/certs:/certs

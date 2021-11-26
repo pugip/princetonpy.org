@@ -17,8 +17,8 @@ from pathlib import Path
 # Set the project base directory
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
-BASE_DIR = Path(__file__).resolve().parents[1]
-REPO_DIR = BASE_DIR.parent
+BASE_DIR = Path(__file__).resolve().parents[1]  # /princetonpy.org/app
+REPO_DIR = BASE_DIR.parent  # /princetonpy.org
 
 # Take environment variables from .env file
 env = environ.Env()
@@ -149,9 +149,10 @@ USE_TZ = True
 
 STATIC_URL = "/static/"
 
-DEFAULT_STATIC_ROOT = Path(os.path.join(BASE_DIR, "static"))
+DEFAULT_STATIC_ROOT = Path(os.path.join(REPO_DIR, "static"))
 STATIC_ROOT = env.path("STATIC_ROOT", DEFAULT_STATIC_ROOT)
 STATICFILES_DIRS = []
+# STATICFILES_DIRS.append("")
 # if LOCAL_ENV:
 #     STATICFILES_DIRS.append("/usr/src/app/pages")
 

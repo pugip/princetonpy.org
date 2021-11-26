@@ -17,10 +17,10 @@ tls /certs/localhost.pem /certs/localhost-key.pem
 reverse_proxy @notStatic web:8000
 
 handle_path /static/* {
-    root * /Users/mike/Projects/princetonpy.org/static
+    root * /princetonpy_static
     file_server
 }
 
 file_server {
-    root /Users/mike/Projects/princetonpy.org/caddy/srv
+    root /srv
 }
