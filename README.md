@@ -3,56 +3,65 @@
 ## Commands
 
 Build and start everything:
-```commandline
+```bash
 docker-compose -f docker-compose.prod.yml up -d --build
 ```
 
 Stop all services:
-```commandline
+```bash
 docker-compose -f docker-compose.prod.yml down
 ```
 
 Export updated `requirements.txt`, necessary whenever dependencies changed:
-```commandline
+```bash
 poetry export -f requirements.txt --output requirements.txt
 ```
 
 Redeploy Django app:
-```commandline
+```bash
 sudo docker-compose -f docker-compose.prod.yml up -d --force-recreate --build web
 ```
 
 ### Manual management commands
-```commandline
+```bash
 docker-compose -f docker-compose.prod.yml exec web python manage.py migrate --noinput
 ```
 
-```commandline
+```bash
 docker-compose -f docker-compose.prod.yml exec web python manage.py collectstatic --no-input --clear
 ```
 
 ### Copying config files
 Retrieve from server:
-```commandline
+```bash
 scp -r princeton@princetonpy.org:/home/princeton/princetonpy.org/prod/{.env.prod.web,.env.prod.aws,.env.prod.db,.env.prod.nginx,.env.prod.proxy-companion} .
 ```
 
 Transfer to server:
-```commandline
+```bash
 scp -r $(pwd)/{.env.prod.web,.env.prod.aws,.env.prod.db,.env.prod.nginx,.env.prod.proxy-companion} princeton@princetonpy.org:/home/princeton/princetonpy.org/prod
 scp -r $(pwd)/{.env.staging.aws,.env.staging.db,.env.staging.nginx,.env.staging.web,.env.staging.proxy-companion} princeton@princetonpy.org:/home/princeton/princetonpy.org/staging
 ```
 
 ### Importing users from CSV
 Make sure file is copied to mounted app directory:
-```commandline
+```bash
 scp -r princetonpy_subscriptions.csv user@host:/path
 sudo docker-compose -f docker-compose.prod.yml run web sh
 python manage.py subscriptions import ./princetonpy_subscriptions.csv
 ```
 
 ### Access DB
-```commandline
+```bash
 sudo docker-compose -f docker-compose.prod.yml exec db psql -U postgres -W princetonpy_prod
-select * from django_site;
+# select * from django_site;
+```
+
+
+### Working with backup files
+```bash
+sudo docker-compose -f docker-compose.prod.yml run cron ls -la /prod_backup/subscribers
+sudo docker container ls
+# get hash from CONTAINER ID column
+sudo docker cp fc95ab44a580:/prod_backup .
 ```
