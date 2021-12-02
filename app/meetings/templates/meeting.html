@@ -29,7 +29,7 @@
 
 {% if meeting.meeting_text %}
     {{ meeting.meeting_text|safe }}
-{% elif message.articles.all %}
+{% elif not message.articles.all %}
     <p>Stay tuned for meeting updates!</p>
 {% endif %}
 
