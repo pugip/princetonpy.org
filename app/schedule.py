@@ -87,10 +87,10 @@ def make_when(dt: datetime.datetime, with_time: bool = True) -> str:
     """
         Convert a datetime into a readable format::
         >>> make_when(datetime.datetime(2021, 9, 1))
-        'November 1st @ 12AM'
+        'Wednesday, November 1st @ 12AM'
         >>> make_when(datetime.datetime(2021, 9, 1), with_time=False)
-        'November 1st'
+        'Wednesday, November 1st'
     """
     if with_time:
-        return f'{dt.strftime("%B")} {make_ordinal(dt.day)} @ {make_time(dt.time())}'
-    return f'{dt.strftime("%B")} {make_ordinal(dt.day)}'
+        return f'{dt.strftime("%A, %B")} {make_ordinal(dt.day)} @ {make_time(dt.time())}'
+    return f'{dt.strftime("%A, %B")} {make_ordinal(dt.day)}'
