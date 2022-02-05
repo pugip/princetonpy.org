@@ -5,7 +5,7 @@ from meetings.models import Meeting
 
 
 class MeetingAdmin(admin.ModelAdmin):
-    list_display = ("date", "title")
+    list_display = ("date", "time", "title")
 
 
 admin.site.register(Meeting, MeetingAdmin)

@@ -23,7 +23,8 @@ def meetings_list(request):
 
 def _meeting_tba(request):
     next_meeting_date = next_second_monday()
-    return render(request, "tba.html", {"meeting_date": next_meeting_date})
+    next_meeting_time = "7:00 PM"
+    return render(request, "tba.html", {"meeting_date": next_meeting_date}, {"meeting_time": next_meeting_time})
 
 
 def _render_meeting(meeting: Meeting, request):

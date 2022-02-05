@@ -8,6 +8,7 @@ from tinymce.models import HTMLField
 
 class Meeting(models.Model):
     date = models.DateTimeField(null=True)
+    time = models.DateTimeField(null=True)
     title = models.CharField(max_length=140, default="", blank=True)
     short_description = HTMLField(default="", blank=True)
     meeting_text = HTMLField(default="", blank=True)
@@ -25,5 +26,12 @@ class Meeting(models.Model):
     def date_str(self) -> Optional[datetime.date]:
         try:
             return self.date.date()
+        except AttributeError:
+            pass
+
+    @property
+    def time_str(self) -> Optional[datetime.time]:
+        try:
+            return self.date.time()
         except AttributeError:
             pass

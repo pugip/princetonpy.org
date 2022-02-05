@@ -13,6 +13,7 @@
 <h1>{{ message.title }}</h1>
 
 <p><u>Date</u>: {{ meeting.date_str }}</p>
+<p><u>Time</u>: {{ meeting.time_str }}</p>
 
 {% if not message.articles.all and not meeting.no_announcement %}
     <p>Stay tuned for updates!</p>

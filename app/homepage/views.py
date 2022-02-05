@@ -14,4 +14,5 @@ class Home(TemplateView):
         except MeetingLink.DoesNotExist:
             pass
         context["next_meeting_date"] = next_second_monday()
+        context["next_meeting_time"] = "7:00 PM"
         return context
