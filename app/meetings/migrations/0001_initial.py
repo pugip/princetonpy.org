@@ -23,7 +23,6 @@ class Migration(migrations.Migration):
                     ),
                 ),
                 ("date", models.DateTimeField()),
-                ("time", models.DateTimeField()),
                 ("title", models.CharField(max_length=140)),
                 ("meeting_text", models.TextField()),
                 ("announcement_link", models.URLField()),

@@ -5,10 +5,11 @@ from django.db import models
 from newsletter.models import Message
 from tinymce.models import HTMLField
 
+from schedule import make_when
+
 
 class Meeting(models.Model):
     date = models.DateTimeField(null=True)
-    time = models.DateTimeField(null=True)
     title = models.CharField(max_length=140, default="", blank=True)
     short_description = HTMLField(default="", blank=True)
     meeting_text = HTMLField(default="", blank=True)
@@ -30,8 +31,8 @@ class Meeting(models.Model):
             pass
 
     @property
-    def time_str(self) -> Optional[datetime.time]:
+    def when(self) -> Optional[str]:
         try:
-            return self.date.time()
+            return make_when(self.date)
         except AttributeError:
             pass
