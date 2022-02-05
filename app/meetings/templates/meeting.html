@@ -12,7 +12,7 @@
 <body>
 <h1>{{ message.title }}</h1>
 
-<p><u>Date</u>: {{ meeting.date_str }}</p>
+<p><u>Date</u>: {{ meeting.when }}</p>
 
 {% if not message.articles.all and not meeting.no_announcement %}
     <p>Stay tuned for updates!</p>
@@ -21,7 +21,7 @@
     <h2>{{ article.title }}</h2>
 
     {% thumbnail article.image "200x200" as image %}
-        <img src="http://{{ site.domain }}{{ image.url }}" width="{{ image.width }}" height="{{ image.height }}">
+        <img src="https://{{ site.domain }}{{ image.url }}" width="{{ image.width }}" height="{{ image.height }}">
     {% endthumbnail %}
 
     <div>{{ article.text|safe }}</div>
