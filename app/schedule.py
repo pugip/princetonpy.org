@@ -1,3 +1,4 @@
+import datetime
 from datetime import date, timedelta
 
 
@@ -42,3 +43,54 @@ def next_second_monday(today=None):
         result = second_monday_this_month
     # convert to date if it's a datetime.
     return getattr(result, "date", result)
+
+
+def get_next_meeting_time(t: datetime.time = datetime.time(19, 0)) -> datetime.datetime:
+    d = next_second_monday()
+    return datetime.datetime.combine(d, t)
+
+
+def make_ordinal(n):
+    """
+    Convert an integer into its ordinal representation::
+    >>> make_ordinal(0)
+    '0th'
+    >>> make_ordinal(3)
+    '3rd'
+    >>> make_ordinal(122)
+    '122nd'
+    >>> make_ordinal(213)
+    '213th'
+    """
+    n = int(n)
+    if 11 <= (n % 100) <= 13:
+        suffix = 'th'
+    else:
+        suffix = ['th', 'st', 'nd', 'rd', 'th'][min(n % 10, 4)]
+    return str(n) + suffix
+
+
+def make_time(t: datetime.time) -> str:
+    """
+        Convert a time into a readable format::
+        >>> make_time(datetime.time(9, 0))
+        '9AM'
+        >>> make_time(datetime.time(12, 30))
+        '12:30PM'
+    """
+    if t.minute == 0:
+        return f'{t.strftime("%-I")}{t.strftime("%p").lower()}'
+    return f'{t.strftime("%-I:%M")}{t.strftime("%p").lower()}'
+
+
+def make_when(dt: datetime.datetime, with_time: bool = True) -> str:
+    """
+        Convert a datetime into a readable format::
+        >>> make_when(datetime.datetime(2021, 9, 1))
+        'November 1st @ 12AM'
+        >>> make_when(datetime.datetime(2021, 9, 1), with_time=False)
+        'November 1st'
+    """
+    if with_time:
+        return f'{dt.strftime("%B")} {make_ordinal(dt.day)} @ {make_time(dt.time())}'
+    return f'{dt.strftime("%B")} {make_ordinal(dt.day)}'

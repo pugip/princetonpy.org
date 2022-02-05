@@ -18,6 +18,7 @@
       <sourceFolder url="file://$MODULE_DIR$/app/homepage" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/app/meetings" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/app/princetonpy" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/app" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/.idea" />
       <excludeFolder url="file://$MODULE_DIR$/nginx" />
       <excludeFolder url="file://$MODULE_DIR$/nginx-proxy" />
@@ -33,5 +34,12 @@
   </component>
   <component name="TemplatesService">
     <option name="TEMPLATE_CONFIGURATION" value="Django" />
+    <option name="TEMPLATE_FOLDERS">
+      <list>
+        <option value="$MODULE_DIR$/app/meetings/templates" />
+        <option value="$MODULE_DIR$/app/homepage/templates" />
+        <option value="$MODULE_DIR$/app/princetonpy/templates" />
+      </list>
+    </option>
   </component>
 </module>

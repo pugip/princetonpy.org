@@ -4,7 +4,7 @@ from django.shortcuts import render
 from django.utils.datetime_safe import datetime
 
 from meetings.models import Meeting
-from schedule import next_second_monday
+from schedule import get_next_meeting_time, make_when
 
 
 def meetings_list(request):
@@ -22,8 +22,9 @@ def meetings_list(request):
 
 
 def _meeting_tba(request):
-    next_meeting_date = next_second_monday()
-    return render(request, "tba.html", {"meeting_date": next_meeting_date})
+    next_time = get_next_meeting_time()
+    next_meeting_str = make_when(next_time)
+    return render(request, "tba.html", {"when": next_meeting_str})
 
 
 def _render_meeting(meeting: Meeting, request):
