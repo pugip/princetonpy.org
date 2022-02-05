@@ -1,6 +1,11 @@
+import datetime
+
+from dateutil.utils import today
 from django.views.generic import TemplateView
+
 from homepage.models import MeetingLink
-from schedule import next_second_monday
+from meetings.models import Meeting
+from schedule import get_next_meeting_time, make_when
 
 
 class Home(TemplateView):
@@ -13,6 +18,9 @@ class Home(TemplateView):
             context["link_entry"] = link_entry
         except MeetingLink.DoesNotExist:
             pass
-        context["next_meeting_date"] = next_second_monday()
-        context["next_meeting_time"] = "7:00 PM"
+        try:
+            meeting = Meeting.objects.filter(date__isnull=False, date__gt=today(datetime.timezone.utc)).earliest("date")
+            context["when"] = make_when(meeting.date)
+        except Meeting.DoesNotExist:
+            context["when"] = make_when(get_next_meeting_time())
         return context
