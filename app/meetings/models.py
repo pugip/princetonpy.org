@@ -14,7 +14,9 @@ class Meeting(models.Model):
     short_description = HTMLField(default="", blank=True)
     meeting_text = HTMLField(default="", blank=True)
     no_announcement = models.BooleanField(default=False)
-    announcement = models.ForeignKey(Message, on_delete=models.SET_NULL, null=True, blank=True)
+    announcement = models.ForeignKey(
+        Message, on_delete=models.SET_NULL, null=True, blank=True
+    )
 
     @property
     def date_slug(self) -> Optional[str]:
