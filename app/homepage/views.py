@@ -19,7 +19,9 @@ class Home(TemplateView):
         except MeetingLink.DoesNotExist:
             pass
         try:
-            meeting = Meeting.objects.filter(date__isnull=False, date__gt=today(datetime.timezone.utc)).earliest("date")
+            meeting = Meeting.objects.filter(
+                date__isnull=False, date__gt=today(datetime.timezone.utc)
+            ).earliest("date")
             context["when"] = make_when(meeting.date)
         except Meeting.DoesNotExist:
             context["when"] = make_when(get_next_meeting_time())

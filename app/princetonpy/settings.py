@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     "homepage",
     "meetings",
     "customadmin",
+    "emails",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
