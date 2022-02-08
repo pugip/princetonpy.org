@@ -64,19 +64,19 @@ def make_ordinal(n):
     """
     n = int(n)
     if 11 <= (n % 100) <= 13:
-        suffix = 'th'
+        suffix = "th"
     else:
-        suffix = ['th', 'st', 'nd', 'rd', 'th'][min(n % 10, 4)]
+        suffix = ["th", "st", "nd", "rd", "th"][min(n % 10, 4)]
     return str(n) + suffix
 
 
 def make_time(t: datetime.time) -> str:
     """
-        Convert a time into a readable format::
-        >>> make_time(datetime.time(9, 0))
-        '9AM'
-        >>> make_time(datetime.time(12, 30))
-        '12:30PM'
+    Convert a time into a readable format::
+    >>> make_time(datetime.time(9, 0))
+    '9AM'
+    >>> make_time(datetime.time(12, 30))
+    '12:30PM'
     """
     if t.minute == 0:
         return f'{t.strftime("%-I")}{t.strftime("%p").lower()}'
@@ -85,12 +85,14 @@ def make_time(t: datetime.time) -> str:
 
 def make_when(dt: datetime.datetime, with_time: bool = True) -> str:
     """
-        Convert a datetime into a readable format::
-        >>> make_when(datetime.datetime(2021, 9, 1))
-        'Wednesday, November 1st @ 12AM'
-        >>> make_when(datetime.datetime(2021, 9, 1), with_time=False)
-        'Wednesday, November 1st'
+    Convert a datetime into a readable format::
+    >>> make_when(datetime.datetime(2021, 9, 1))
+    'Wednesday, November 1st @ 12AM'
+    >>> make_when(datetime.datetime(2021, 9, 1), with_time=False)
+    'Wednesday, November 1st'
     """
     if with_time:
-        return f'{dt.strftime("%A, %B")} {make_ordinal(dt.day)} @ {make_time(dt.time())}'
+        return (
+            f'{dt.strftime("%A, %B")} {make_ordinal(dt.day)} @ {make_time(dt.time())}'
+        )
     return f'{dt.strftime("%A, %B")} {make_ordinal(dt.day)}'

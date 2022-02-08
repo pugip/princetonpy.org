@@ -8,29 +8,34 @@ import tinymce.models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('newsletter', '0005_auto_20190918_0122'),
-        ('meetings', '0006_auto_20211101_1440'),
+        ("newsletter", "0005_auto_20190918_0122"),
+        ("meetings", "0006_auto_20211101_1440"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='meeting',
-            name='announcement',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to='newsletter.message'),
+            model_name="meeting",
+            name="announcement",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                to="newsletter.message",
+            ),
         ),
         migrations.AlterField(
-            model_name='meeting',
-            name='meeting_text',
-            field=tinymce.models.HTMLField(blank=True, default=''),
+            model_name="meeting",
+            name="meeting_text",
+            field=tinymce.models.HTMLField(blank=True, default=""),
         ),
         migrations.AlterField(
-            model_name='meeting',
-            name='short_description',
-            field=tinymce.models.HTMLField(blank=True, default=''),
+            model_name="meeting",
+            name="short_description",
+            field=tinymce.models.HTMLField(blank=True, default=""),
         ),
         migrations.AlterField(
-            model_name='meeting',
-            name='title',
-            field=models.CharField(blank=True, default='', max_length=140),
+            model_name="meeting",
+            name="title",
+            field=models.CharField(blank=True, default="", max_length=140),
         ),
     ]
