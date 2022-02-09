@@ -20,7 +20,7 @@ class Home(TemplateView):
             pass
         try:
             meeting = Meeting.objects.filter(
-                date__isnull=False, date__gt=today(datetime.timezone.utc)
+                date__isnull=False, date__gte=today(datetime.timezone.utc)
             ).earliest("date")
             context["when"] = make_when(meeting.date)
         except Meeting.DoesNotExist:
