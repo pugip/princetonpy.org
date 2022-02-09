@@ -9,7 +9,7 @@ license = "MIT License"
 python = "^3.9"
 Django = "^3.2"
 psycopg2-binary = "^2.8.6"
-django-ses = {extras = ["bounce"], version = "^1.0.3"}
+django-ses = {extras = ["events"], version = "^2.4.0"}
 django-newsletter = "^0.9.1"
 django-tinymce = "^3.2.0"
 sorl-thumbnail = "^12.7.0"
