@@ -10,7 +10,7 @@ from schedule import get_next_meeting_time, make_when
 def meetings_list(request):
     meeting_list = Meeting.objects.order_by("-date")
     page = request.GET.get("page", 1)
-    paginator = Paginator(meeting_list, 40)
+    paginator = Paginator(meeting_list, 30)
     try:
         meetings = paginator.page(page)
     except PageNotAnInteger:
