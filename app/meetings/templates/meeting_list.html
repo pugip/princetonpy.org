@@ -1,45 +1,35 @@
+{% extends 'base.html' %}
 {% load static %}
-<!doctype html>
-
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <title>Meetings</title>
-    <meta name="description" content="PPUG meetings">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% block stylesheets %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/meeting_list.css' %}">
-</head>
+{% endblock %}
 
-<body>
-<h1>{{ page_title }}</h1>
-
-<menu>
-{% for meeting in meetings %}
-    <li><a href="/meeting/{{ meeting.pk }}">{{ meeting.date }}</a> - {{ meeting.title }}</li>
-{% endfor %}
-</menu>
-
-{% if meetings.has_other_pages %}
-  <ul class="pagination">
-    {% if meetings.has_previous %}
-      <li><a href="?page={{ meetings.previous_page_number }}">&laquo;</a></li>
-    {% else %}
-      <li class="disabled"><span>&laquo;</span></li>
-    {% endif %}
-    {% for i in meetings.paginator.page_range %}
-      {% if meetings.number == i %}
-        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
-      {% else %}
-        <li><a href="?page={{ i }}">{{ i }}</a></li>
-      {% endif %}
+{% block body %}
+    <menu>
+    {% for meeting in meetings %}
+        <li><a href="/meeting/{{ meeting.pk }}">{{ meeting.date }}</a> - {{ meeting.title }}</li>
     {% endfor %}
-    {% if meetings.has_next %}
-      <li><a href="?page={{ meetings.next_page_number }}">&raquo;</a></li>
-    {% else %}
-      <li class="disabled"><span>&raquo;</span></li>
-    {% endif %}
-  </ul>
-{% endif %}
+    </menu>
 
-</body>
-</html>
+    {% if meetings.has_other_pages %}
+      <ul class="pagination">
+        {% if meetings.has_previous %}
+          <li><a href="?page={{ meetings.previous_page_number }}">&laquo;</a></li>
+        {% else %}
+          <li class="disabled"><span>&laquo;</span></li>
+        {% endif %}
+        {% for i in meetings.paginator.page_range %}
+          {% if meetings.number == i %}
+            <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+          {% else %}
+            <li><a href="?page={{ i }}">{{ i }}</a></li>
+          {% endif %}
+        {% endfor %}
+        {% if meetings.has_next %}
+          <li><a href="?page={{ meetings.next_page_number }}">&raquo;</a></li>
+        {% else %}
+          <li class="disabled"><span>&raquo;</span></li>
+        {% endif %}
+      </ul>
+    {% endif %}
+{% endblock %}

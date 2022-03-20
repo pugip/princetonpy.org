@@ -1,37 +1,31 @@
+{% extends 'base.html' %}
 {% load thumbnail %}
-<!doctype html>
+{% load static %}
+{% block stylesheets %}
+{% endblock %}
 
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <title>Meetings</title>
-    <meta name="description" content="PPUG meeting">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
+{% block body %}
+    {% if meeting.title %}
+        <h2>{{ meeting.title }}</h2>
+    {% endif %}
 
-<body>
-<h1>{{ message.title }}</h1>
+    <p><u>Date</u>: {{ meeting.when }}</p>
 
-<p><u>Date</u>: {{ meeting.when }}</p>
+    {% if not message.articles.all and not meeting.no_announcement %}
+        <p>Stay tuned for updates!</p>
+    {% endif %}
+    {% for article in message.articles.all %}
+        <h2>{{ article.title }}</h2>
+        {% thumbnail article.image "200x200" as image %}
+            <img src="https://{{ site.domain }}{{ image.url }}" width="{{ image.width }}" height="{{ image.height }}">
+        {% endthumbnail %}
 
-{% if not message.articles.all and not meeting.no_announcement %}
-    <p>Stay tuned for updates!</p>
-{% endif %}
-{% for article in message.articles.all %}
-    <h2>{{ article.title }}</h2>
+        <div>{{ article.text|safe }}</div>
+    {% endfor %}
 
-    {% thumbnail article.image "200x200" as image %}
-        <img src="https://{{ site.domain }}{{ image.url }}" width="{{ image.width }}" height="{{ image.height }}">
-    {% endthumbnail %}
-
-    <div>{{ article.text|safe }}</div>
-{% endfor %}
-
-{% if meeting.meeting_text %}
-    {{ meeting.meeting_text|safe }}
-{% elif not message.articles.all %}
-    <p>Stay tuned for meeting updates!</p>
-{% endif %}
-
-</body>
-</html>
+    {% if meeting.meeting_text %}
+        {{ meeting.meeting_text|safe }}
+    {% elif not message.articles.all %}
+        <p>Stay tuned for meeting updates!</p>
+    {% endif %}
+{% endblock %}

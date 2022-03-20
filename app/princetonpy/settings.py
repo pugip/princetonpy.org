@@ -43,6 +43,7 @@ BACKUP_PATH = env.str("BACKUP_PATH", None)
 # Application definition
 
 INSTALLED_APPS = [
+    # "whitenoise.runserver_nostatic",
     "homepage",
     "meetings",
     "customadmin",
@@ -64,6 +65,7 @@ SITE_ID = 3
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",

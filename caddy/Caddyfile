@@ -1,17 +1,5 @@
 www.princetonpy.org {
-    @notStatic {
-        not {
-            file {
-                try_files {path} {path}.html
-            }
-        }
-    }
-    reverse_proxy @notStatic web:8000
-
-	handle_path /static/* {
-		root * /princetonpy_static
-		file_server
-	}
+    reverse_proxy * web:8000
 
     file_server {
         root /srv
