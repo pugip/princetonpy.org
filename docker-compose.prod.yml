@@ -11,10 +11,9 @@ services:
     build:
       context: ./app
       dockerfile: Dockerfile.prod
-    command: hypercorn princetonpy.asgi:application --bind 0.0.0.0:8000
+    command: hypercorn princetonpy.wsgi:application --bind 0.0.0.0:8000
     volumes:
       - ./app:/home/app/web
-      - princetonpy_static:/home/app/web/static
       - princetonpy_prod_backup:/prod_backup
     expose:
       - 8000
@@ -45,15 +44,12 @@ services:
       - web
     volumes:
       - ./caddy/Caddyfile:/etc/caddy/Caddyfile
-      - princetonpy_static:/princetonpy_static
       - ./caddy/srv:/srv
       - caddy_data:/data
       - caddy_config:/config
 
 volumes:
   princetonpy_postgres_prod:
-    external: true
-  princetonpy_static:
     external: true
   princetonpy_prod_backup:
     external: true
