@@ -5,9 +5,7 @@ services:
     build:
       context: ./app
       dockerfile: Dockerfile.prod
-    command: hypercorn princetonpy.asgi:application --bind 0.0.0.0:8000
-    volumes:
-      - princetonpy_static:/home/app/web/static
+    command: hypercorn princetonpy.wsgi:application --bind 0.0.0.0:8000
     ports:
       - "8000:8000"
     env_file:
@@ -32,7 +30,6 @@ services:
       - web
     volumes:
       - ./caddy/Caddyfile.docker:/etc/caddy/Caddyfile
-      - princetonpy_static:/princetonpy_static
       - ./caddy/srv:/srv
       - ./caddy/certs:/certs
       - caddy_data:/data
@@ -40,8 +37,6 @@ services:
 
 volumes:
   princetonpy_postgres_dev:
-    external: true
-  princetonpy_static:
     external: true
   caddy_data:
     external: true
