@@ -1,11 +1,7 @@
-{% extends "newsletter/common.html" %}
-
-{% load i18n %}
-
-{% block title %}{% trans "Sign up for announcements" %}{% endblock title %}
+{% extends 'base.html' %}
 
 {% block body %}
-    <h1>Sign up for announcements</h1>
+    <h2>Sign up for announcements</h2>
     <p>We'll send you an email to announce upcoming meetings with details about topics, speakers, etc.</p>
     <form enctype="multipart/form-data" method="post" action="/newsletter/princetonpy/subscribe/">
         {% csrf_token %}

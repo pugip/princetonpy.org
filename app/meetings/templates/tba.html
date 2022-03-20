@@ -1,15 +1,6 @@
-<!doctype html>
+{% extends 'base.html' %}
 
-<html lang="en">
-<head>
-	<meta charset="utf-8">
-	<title>Next meeting TBA</title>
-	<meta name="description" content="PPUG meeting">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-
-<body>
-	<p><a href="/">Homepage</a></p>
+{% block body %}
 	<p><u>Date</u>: <b>{{ when }}</b></p>
 
 	<p>Agenda to be announced!</p>
@@ -31,5 +22,4 @@
 			<li>"New tool roundup" by our resident code hound keeps you updated.</li>
 		</ul>
 	</p>
-</body>
-</html>
+{% endblock body %}

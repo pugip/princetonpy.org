@@ -1,15 +1,7 @@
-<!doctype html>
+{% extends 'base.html' %}
 
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <title>Princeton Python User Group</title>
-    <meta name="description" content="Princeton Python User Group">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
+{% block body %}
 
-<body>
-<h1>Princeton Python User Group</h1>
 <section>
     <h2>Who we are:</h2>
     <p>We're a group for all things Python, open-source and STEM.</p>
@@ -20,8 +12,8 @@
         discussion.</p>
     <p>There really isn't a high bar to participate; this is great space to bring up things like:</p>
     <ul>
-        <li>projects - finished or in progress!</li>
-        <li>cool code snippets or language features</li>
+        <li>projects (we like to hear about works-in-progress too)</li>
+        <li>code snippets & language feature examples</li>
         <li>a problem you're stumped by</li>
         <li>an interesting library</li>
     </ul>
@@ -29,10 +21,7 @@
 
 <section>
     <h2>When:</h2>
-    <p>We meet on the second Monday of every month from 7-8:30pm.</p>
-    <p><b>Next meeting: {{ when }}</b></p>
-    <p><a href="/next-meeting">Next meeting info</a></p>
-    <p><a href="/meetings">List of all meetings</a></p>
+    <p>We meet regularly on the second Monday of every month from 7-8:30pm.</p>
 </section>
 
 <section>
@@ -55,25 +44,8 @@
 </section>
 
 <section>
-    <h2>Stay informed:</h2>
-    <p>Subscribe and we'll send a monthly email in advance of the meeting for any planned topics, speakers, etc.:</p>
-    <p><a href="signup/">Sign up here</a></p>
-</section>
-
-<section>
     <h2>Chat with us:</h2>
     <p><a href="https://matrix.to/#/+ppug:matrix.org">https://matrix.to/#/+ppug:matrix.org</a></p>
 </section>
 
-<br>
-<section>
-    <p>
-        <a href="https://www.djangoproject.com/">
-            <img src="https://www.djangoproject.com/m/img/badges/djangomade124x25.gif" border="0"
-                 alt="Made with Django." title="Made with Django."/>
-        </a>
-    </p>
-</section>
-
-</body>
-</html>
+{% endblock %}

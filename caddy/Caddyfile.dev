@@ -4,22 +4,10 @@
 
 localhost
 
-tls /certs/localhost.pem /certs/localhost-key.pem
+tls ./certs/localhost.pem ./certs/localhost-key.pem
 
-@notStatic {
-    not {
-		file {
-			try_files {path} {path}.html
-		}
-	}
-}
-
-reverse_proxy @notStatic web:8000
-
-handle_path /static/* {
-    root * /Users/mike/Projects/princetonpy.org/static
-    file_server
-}
+reverse_proxy * web:8000
+# reverse_proxy * localhost:8000
 
 file_server {
     root /Users/mike/Projects/princetonpy.org/caddy/srv
