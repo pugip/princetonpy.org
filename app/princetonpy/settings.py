@@ -10,12 +10,12 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
-import environ
 import os
 from pathlib import Path
 
+import environ
 # Set the project base directory
-from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from whitenoise.media_types import default_types
 
 BASE_DIR = Path(__file__).resolve().parents[1]  # /princetonpy.org/app
 REPO_DIR = BASE_DIR.parent  # /princetonpy.org
@@ -198,3 +198,5 @@ CRONJOBS = [
     ("0 0 * * *", "princetonpy.cron.backup.save_users"),
     ("*/5 * * * *", "django.core.management.call_command", ["submit_newsletter"]),
 ]
+
+WHITENOISE_MIMETYPES = default_types()
