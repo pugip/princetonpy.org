@@ -11,21 +11,38 @@
 
     <p><u>Date</u>: {{ meeting.when }}</p>
 
-    {% if not message.articles.all and not meeting.no_announcement %}
-        <p>Stay tuned for updates!</p>
-    {% endif %}
-    {% for article in message.articles.all %}
-        <h2>{{ article.title }}</h2>
-        {% thumbnail article.image "200x200" as image %}
-            <img src="https://{{ site.domain }}{{ image.url }}" width="{{ image.width }}" height="{{ image.height }}">
-        {% endthumbnail %}
+    {% if meeting.tba %}
+        <p>Agenda to be announced!</p>
+	    <p>We haven't put together the agenda for the next meeting yet, but here's what we're thinking...</p>
+        <p>
+            Future meetings will include talks on:
+            <ul>
+                <li>data visualization in Pandas</li>
+                <li>crash courses in deep learning</li>
+                <li>learn python from scratch</li>
+                <li>Embrace error: how error foo can advance your coding, and beyond!</li>
+            </ul>
+            Plus installments of our ongoing series:
+            <ul>
+                <li>"Future of Coding" explores automated transformation of source code.</li>
+                <li>"Demysti-py" looks at how familiar constructs are implemented.</li>
+                <li>"Pythonic pitfalls" improves both your code and your fundamentals.</li>
+                <li>"Deep reading" explores and applies academic articles on deep learning.</li>
+                <li>"New tool roundup" by our resident code hound keeps you updated.</li>
+            </ul>
+        </p>
+    {% else %}
+        {% for article in message.articles.all %}
+            <h2>{{ article.title }}</h2>
+            {% thumbnail article.image "200x200" as image %}
+                <img src="https://{{ site.domain }}{{ image.url }}" width="{{ image.width }}" height="{{ image.height }}">
+            {% endthumbnail %}
 
-        <div>{{ article.text|safe }}</div>
-    {% endfor %}
+            <div>{{ article.text|safe }}</div>
+        {% endfor %}
+    {% endif %}
 
     {% if meeting.meeting_text %}
         {{ meeting.meeting_text|safe }}
-    {% elif not message.articles.all %}
-        <p>Stay tuned for meeting updates!</p>
     {% endif %}
 {% endblock %}

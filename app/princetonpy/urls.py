@@ -34,7 +34,11 @@ urlpatterns = [
     path("meeting/<int:pk>/", meeting_page),
     path("meeting/", meeting_page),
     path("next-meeting/", next_meeting_page),
-    url(r'^ses/event-webhook/$', SESEventWebhookView.as_view(), name='handle-event-webhook'),
+    url(
+        r"^ses/event-webhook/$",
+        SESEventWebhookView.as_view(),
+        name="handle-event-webhook",
+    ),
 ]
 
 urlpatterns += staticfiles_urlpatterns()
