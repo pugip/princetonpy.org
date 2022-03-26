@@ -21,7 +21,7 @@ def meetings_list(request):
     return render(request, "meeting_list.html", context)
 
 
-def _meeting_tba(request):
+def _render_tba(request):
     next_time = get_next_meeting_time()
     next_meeting_str = make_when(next_time)
     return render(request, "tba.html", {"when": next_meeting_str})
@@ -36,11 +36,13 @@ def _render_meeting(meeting: Meeting, request):
 
 def next_meeting_page(request):
     try:
-        meeting = Meeting.objects.order_by("-date").first()
-    except Meeting.DoesNotExist:
-        return _meeting_tba(request)
-    if meeting.date.date() < datetime.now().date():
-        return _meeting_tba(request)
+        # sorted ascending (order_by("date"))
+        upcoming_meetings = Meeting.objects.order_by("date").filter(
+            date__gte=datetime.now().date()
+        )
+        meeting = upcoming_meetings[0]
+    except IndexError:
+        return _render_tba(request)
     return _render_meeting(meeting, request)
 
 
