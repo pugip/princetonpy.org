@@ -21,7 +21,7 @@
       <excludeFolder url="file://$MODULE_DIR$/scripts" />
       <excludeFolder url="file://$MODULE_DIR$/app/.venv" />
     </content>
-    <orderEntry type="jdk" jdkName="Python 3.9 (princetonpy.org)" jdkType="Python SDK" />
+    <orderEntry type="jdk" jdkName="Poetry (princetonpy)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
   <component name="PyDocumentationSettings">
