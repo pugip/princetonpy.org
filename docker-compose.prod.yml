@@ -13,7 +13,6 @@ services:
       dockerfile: Dockerfile.prod
     command: hypercorn princetonpy.asgi:application --bind 0.0.0.0:8000
     volumes:
-      - $PWD/app:/home/app/web
       - princetonpy_prod_backup:/prod_backup
     expose:
       - 8000
