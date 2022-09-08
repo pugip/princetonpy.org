@@ -200,3 +200,18 @@ CRONJOBS = [
     ("0 0 * * *", "princetonpy.cron.backup.save_users"),
     ("*/5 * * * *", "django.core.management.call_command", ["submit_newsletter"]),
 ]
+
+TINYMCE_DEFAULT_CONFIG = {
+    "theme": "silver",
+    "height": 500,
+    "menubar": False,
+    "plugins": "advlist,autolink,lists,link,image,charmap,print,preview,anchor,"
+    "searchreplace,visualblocks,code,fullscreen,insertdatetime,media,table,paste,"
+    "code,help,wordcount",
+    "toolbar": "undo redo | formatselect | "
+    "bold italic backcolor | alignleft aligncenter "
+    "alignright alignjustify | bullist numlist outdent indent | "
+    "removeformat | help",
+    "relative_urls": False,
+    "default_link_target": "_blank"
+}
