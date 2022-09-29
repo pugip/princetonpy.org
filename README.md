@@ -1,15 +1,19 @@
 # Website
 
+## Some important notes
+
+The latest Docker Compose uses some parsing under-the-hood that makes secrets stored in `.env` files break. So any `$$` is actually a single `$` being escaped. Annoying & something that must be documented!
+
 ## Commands
 
 Build and start everything:
 ```bash
-docker-compose -f docker-compose.prod.yml up -d --build
+sudo -E docker compose -f docker-compose.prod.yml up -d --build
 ```
 
 Stop all services:
 ```bash
-docker-compose -f docker-compose.prod.yml down
+sudo -E docker compose -f docker-compose.prod.yml down
 ```
 
 Export updated `requirements.txt`, necessary whenever dependencies changed:
@@ -19,16 +23,16 @@ poetry export -f requirements.txt --output requirements.txt
 
 Redeploy Django app:
 ```bash
-sudo docker-compose -f docker-compose.prod.yml up -d --force-recreate --build web
+sudo -E docker compose -f docker-compose.prod.yml up -d --force-recreate --build web
 ```
 
 ### Manual management commands
 ```bash
-docker-compose -f docker-compose.prod.yml exec web python manage.py migrate --noinput
+sudo -E docker compose -f docker-compose.prod.yml exec web python manage.py migrate --noinput
 ```
 
 ```bash
-docker-compose -f docker-compose.prod.yml exec web python manage.py collectstatic --no-input --clear
+sudo -E docker compose -f docker-compose.prod.yml exec web python manage.py collectstatic --no-input --clear
 ```
 
 ### Copying config files
@@ -47,20 +51,20 @@ scp -r $(pwd)/{.env.staging.aws,.env.staging.db,.env.staging.nginx,.env.staging.
 Make sure file is copied to mounted app directory:
 ```bash
 scp -r princetonpy_subscriptions.csv user@host:/path
-sudo docker-compose -f docker-compose.prod.yml run web sh
+sudo -E docker compose -f docker-compose.prod.yml run web sh
 python manage.py subscriptions import ./princetonpy_subscriptions.csv
 ```
 
 ### Access DB
 ```bash
-sudo docker-compose -f docker-compose.prod.yml exec db psql -U postgres -W princetonpy_prod
+sudo -E docker compose -f docker-compose.prod.yml exec db psql -U postgres -W princetonpy_prod
 # select * from django_site;
 ```
 
 
 ### Working with backup files
 ```bash
-sudo docker-compose -f docker-compose.prod.yml run cron ls -la /prod_backup/subscribers
+sudo -E docker compose -f docker-compose.prod.yml run cron ls -la /prod_backup/subscribers
 sudo docker container ls
 # get hash from CONTAINER ID column
 sudo docker cp fc95ab44a580:/prod_backup .
