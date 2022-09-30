@@ -10,12 +10,12 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
-import environ
 import os
 from pathlib import Path
 
+import environ
+
 # Set the project base directory
-from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 BASE_DIR = Path(__file__).resolve().parents[1]  # /princetonpy.org/app
 REPO_DIR = BASE_DIR.parent  # /princetonpy.org
@@ -116,6 +116,8 @@ DATABASES = {
     }
 }
 
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 
@@ -198,3 +200,21 @@ CRONJOBS = [
     ("0 0 * * *", "princetonpy.cron.backup.save_users"),
     ("*/5 * * * *", "django.core.management.call_command", ["submit_newsletter"]),
 ]
+
+TINYMCE_DEFAULT_CONFIG = {
+    "theme": "silver",
+    "height": 500,
+    "menubar": False,
+    "plugins": "advlist,autolink,lists,link,image,charmap,print,preview,anchor,"
+    "searchreplace,visualblocks,code,fullscreen,insertdatetime,media,table,paste,"
+    "code,help,wordcount",
+    "toolbar": "undo redo | formatselect | "
+    "bold italic backcolor | alignleft aligncenter "
+    "alignright alignjustify | bullist numlist outdent indent | "
+    "removeformat | help",
+    "relative_urls": False,
+    "convert_urls": False,
+    "remove_script_host": False,
+    "document_base_url": "https://www.princetonpy.org/",
+    "default_link_target": "_blank"
+}

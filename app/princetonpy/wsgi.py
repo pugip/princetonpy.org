@@ -10,9 +10,7 @@ https://docs.djangoproject.com/en/3.1/howto/deployment/wsgi/
 import os
 
 from django.core.wsgi import get_wsgi_application
-from hypercorn.middleware import AsyncioWSGIMiddleware
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "princetonpy.settings")
 
-wsgi_app = get_wsgi_application()
-application = AsyncioWSGIMiddleware(wsgi_app)
+application = get_wsgi_application()

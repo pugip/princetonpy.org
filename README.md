@@ -61,11 +61,37 @@ sudo -E docker compose -f docker-compose.prod.yml exec db psql -U postgres -W pr
 # select * from django_site;
 ```
 
-
 ### Working with backup files
 ```bash
 sudo -E docker compose -f docker-compose.prod.yml run cron ls -la /prod_backup/subscribers
 sudo docker container ls
 # get hash from CONTAINER ID column
 sudo docker cp fc95ab44a580:/prod_backup .
+```
+
+### Manual Django shell updates
+
+In server:
+```bash
+sudo -E docker compose -f docker-compose.prod.yml run web sh
+```
+
+In container:
+```bash
+python manage.py shell
+```
+
+And then in Django shell:
+```python
+import dateutil
+from datetime import datetime
+
+from meetings.models import Meeting
+
+delta = dateutil.relativedelta.relativedelta(months=2)
+before_date = datetime.now(tz=dateutil.tz.gettz("America/New_York")) - delta
+
+# returns queryset
+meeting_qs = Meeting.objects.filter(date__lte=before_date)
+meeting_qs.update(tba=False)
 ```
