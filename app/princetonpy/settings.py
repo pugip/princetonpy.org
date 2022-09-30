@@ -213,5 +213,8 @@ TINYMCE_DEFAULT_CONFIG = {
     "alignright alignjustify | bullist numlist outdent indent | "
     "removeformat | help",
     "relative_urls": False,
+    "convert_urls": False,
+    "remove_script_host": False,
+    "document_base_url": "https://www.princetonpy.org/",
     "default_link_target": "_blank"
 }
