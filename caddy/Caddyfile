@@ -1,11 +1,24 @@
+#{
+#    email michael@hadam.us
+#    acme_ca https://acme-staging-v02.api.letsencrypt.org/directory
+#}
+
 www.princetonpy.org {
     reverse_proxy * web:8000
 
     file_server {
         root /srv
     }
+
+    log {
+    	output file /var/log/caddy/site.log
+    }
 }
 
 princetonpy.org {
 	redir https://www.princetonpy.org{uri}
+
+	log {
+    	output file /var/log/caddy/site.log
+    }
 }

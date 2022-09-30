@@ -11,9 +11,8 @@ services:
     build:
       context: ./app
       dockerfile: Dockerfile.prod
-    command: hypercorn princetonpy.wsgi:application --bind 0.0.0.0:8000
+    command: hypercorn princetonpy.asgi:application --bind 0.0.0.0:8000
     volumes:
-      - ./app:/home/app/web
       - princetonpy_prod_backup:/prod_backup
     expose:
       - 8000
@@ -28,7 +27,7 @@ services:
       dockerfile: Dockerfile-cron.prod
     command: yacron -c /home/app/web/crontab.yaml
     volumes:
-      - ./app:/home/app/web
+      - $PWD/app:/home/app/web
       - princetonpy_prod_backup:/prod_backup
     env_file:
       - .env.prod.web
@@ -43,8 +42,8 @@ services:
     depends_on:
       - web
     volumes:
-      - ./caddy/Caddyfile:/etc/caddy/Caddyfile
-      - ./caddy/srv:/srv
+      - $PWD/caddy/Caddyfile:/etc/caddy/Caddyfile
+      - $PWD/caddy/srv:/srv
       - caddy_data:/data
       - caddy_config:/config
 

@@ -11,7 +11,7 @@ services:
     build:
       context: ./app
       dockerfile: Dockerfile.prod
-    command: hypercorn princetonpy.wsgi:application --bind 0.0.0.0:8000
+    command: hypercorn princetonpy.asgi:application --bind 0.0.0.0:8000
     volumes:
       - ./app:/home/app/web
     expose:
