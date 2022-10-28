@@ -2,13 +2,16 @@
 
 {% block body %}
 <section>
-    <h2>Who we are:</h2>
+    <h2>tl;dr</h2>
+    <p>central NJ open source enthusiasts exploring how inclusive coding can be</p>
+</section>
+
+<section>
+    <h2>Who we are</h2>
     <p>We're a group for all things Python, open-source and STEM.</p>
     <p>Whether you've never programmed, or have been programming for a long time - please join us!</p>
-    <p>We're always looking for people for presentations, so if you have something you'd like to talk about,
-        please let us know!</p>
-    <p>Tell us in advance and we can announce the topic beforehand, otherwise we always have an open floor for
-        discussion.</p>
+    <p>We're always looking for people for presentations, so if you have something you'd like to talk about, please let us know!</p>
+    <p>Tell us in advance, and we can announce the topic beforehand, otherwise we always have an open floor for discussion.</p>
     <p>There really isn't a high bar to participate; this is great space to bring up things like:</p>
     <ul>
         <li>projects (we like to hear about works-in-progress too)</li>
@@ -19,20 +22,13 @@
 </section>
 
 <section>
-    <h2>When:</h2>
+    <h2>When</h2>
     <p>We meet regularly on the second Monday of every month from 7-8:30pm.</p>
 </section>
 
 <section>
-    <h2>Location:</h2>
-    <p>When conditions permit in-person meetings:</p>
-    <p translate="no">
-        <a href="https://tigerlabs.co">Tigerlabs</a><br>
-        252 Nassau Street<br>
-        2nd floor<br>
-        Princeton, <abbr title="New Jersey">NJ</abbr> 08542
-    </p>
-    <p>Otherwise online at:</p>
+    <h2>Location</h2>
+    <p>Currently online at:</p>
     {% if link_entry.link and link_entry.link_text %}
         <p><a href="{{ link_entry.link }}">{{ link_entry.link_text }}</a></p>
     {% elif link_entry.link %}
@@ -40,10 +36,55 @@
     {% else %}
         <p>Meeting link TBA!</p>
     {% endif %}
+    <p>Eventually we will resume in-person meetings:</p>
+    <p translate="no">
+        <a href="https://tigerlabs.co">Tigerlabs</a><br>
+        252 Nassau Street<br>
+        2nd floor<br>
+        Princeton, <abbr title="New Jersey">NJ</abbr> 08542
+    </p>
 </section>
+
+<hr>
+
+<section id="talk">
+    <h2>Our first talk</h2>
+    <h3>Coding for everyone: a practical deep-dive into the modern web page</h3>
+	<p>
+		Discover the coding power-tool hidden in your computer's web browser. A demo loaded with practical tips and critical concepts. <br/>
+		See how to tweak web pages. Learn about software design. Find out if the coding craze is for you--or just see what all the fuss is about! <br/>
+		We present very basic HTML, CSS, and JavaScript, leveraging a built-in browser tool to modify a webpage. <br/>
+		For high school through retirement. <br/>
+	</p>
+	<p>
+		Don't want to learn to code but are curious?  Might want to learn but aren't sure? <br/>
+		Wondering what coding looks like, or what kind of person does it? <br/>
+		Thinking that some understanding is important for citizens in the digital age? <br/>
+		Then check out this talk!
+	</p>
+	<p>
+		Next given on Monday, December 5th at <a href="https://hclibrary.us">Hunterdon County Library</a> in Clinton NJ  <br/>
+		<a href="https://hclibrary.libcal.com/event/9723436">Sign up!</a>
+	</p>
+	<p>
+	Are you a library wanting to host this totally free talk?  <a href="mailto:talks@princetonpy.org">Let us know!</a>
+	</p>
+</section>
+
+<hr>
+
+<section>
+    <h2>Shout out to:</h2>
+	<p><a href="https://tigerlabs.co">Tigerlabs</a>: our pre-covid meeting place, check out this co-working space in the heart of princeton that is v friendly to community groups like us  </p>
+	<p><a href="https://princetonlibrary.org">Princeton Public Library</a>: our local library, hosting our series of coding talks and classes--libraries rock!  </p>
+	<p><a href="https://fubarlabs.org">Fubar Labs</a>: NJ's first makerspacer includes our sister group, the AIStudyGroup!  </p>
+</section>
+
+<hr>
 
 <section>
     <h2>Chat with us:</h2>
     <p><a href="https://matrix.to/#/+ppug:matrix.org">https://matrix.to/#/+ppug:matrix.org</a></p>
 </section>
+
 {% endblock %}
