@@ -19,7 +19,7 @@ body {
         ". article ."
         "footer footer footer";
     grid-template-rows: repeat(4, auto);
-    grid-template-columns: 1fr 45% 1fr;
+    grid-template-columns: 1fr 50% 1fr;
     grid-gap: 5px;
     align-items: center;
     justify-items: center;
@@ -56,6 +56,10 @@ body {
 .nav-bar {
     /*width: 15em;*/
     /*padding: 1em;*/
+}
+
+.alert {
+  border: 4px dashed #ffb03e;
 }
 
 .nav-links {
