@@ -4,7 +4,7 @@
 __pycache__/
 .idea/dataSources.xml
 caddy/certs/
-static/
+/static/
 
 .vs/
 .vscode/
