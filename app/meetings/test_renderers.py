@@ -18,10 +18,22 @@ def message(faker):
     message = Message(title=faker.catch_phrase())
     message.save()
 
-    articles = Article.objects.bulk_create([
-        Article(title=get_title(faker), text=faker.paragraph(), sortorder=0, post=message),
-        Article(title=get_title(faker), text=faker.paragraph(), sortorder=1, post=message),
-    ])
+    articles = Article.objects.bulk_create(
+        [
+            Article(
+                title=get_title(faker),
+                text=faker.paragraph(),
+                sortorder=0,
+                post=message,
+            ),
+            Article(
+                title=get_title(faker),
+                text=faker.paragraph(),
+                sortorder=1,
+                post=message,
+            ),
+        ]
+    )
     message.articles.set(articles)
     message.save()
     return message

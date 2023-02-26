@@ -19,8 +19,8 @@ class CustomAtomFeed(Atom1Feed):
         # 'content' is added to the item below, in item_extra_kwargs()
         # It's populated in item_your_custom_field(). Here we're creating
         # the <content> element and adding it to our feed xml
-        if item['content'] is not None:
-            handler.addQuickElement(u'content', item['content'])
+        if item["content"] is not None:
+            handler.addQuickElement("content", item["content"])
 
 
 class RecentAnnouncementsFeed(Feed):
@@ -29,7 +29,7 @@ class RecentAnnouncementsFeed(Feed):
     description = "Announcements sent out by the Princeton Python User Group"
 
     def items(self):
-        return Meeting.objects.order_by('-date')[:5]
+        return Meeting.objects.order_by("-date")[:5]
 
     def item_title(self, item):
         return item.title

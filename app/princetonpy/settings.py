@@ -43,7 +43,7 @@ BACKUP_PATH = env.str("BACKUP_PATH", None)
 # Application definition
 
 INSTALLED_APPS = [
-    # "whitenoise.runserver_nostatic",
+    "whitenoise.runserver_nostatic",
     "homepage",
     "meetings",
     "customadmin",
@@ -116,7 +116,7 @@ DATABASES = {
     }
 }
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -216,8 +216,8 @@ TINYMCE_DEFAULT_CONFIG = {
     "convert_urls": False,
     "remove_script_host": False,
     "document_base_url": "https://www.princetonpy.org/",
-    "default_link_target": "_blank"
+    "default_link_target": "_blank",
 }
 
-if 'test' in sys.argv:
-    DATABASES['default'] = {'ENGINE': 'django.db.backends.sqlite3'}
+if "test" in sys.argv:
+    DATABASES["default"] = {"ENGINE": "django.db.backends.sqlite3"}
