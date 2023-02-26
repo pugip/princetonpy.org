@@ -43,7 +43,7 @@ BACKUP_PATH = env.str("BACKUP_PATH", None)
 # Application definition
 
 INSTALLED_APPS = [
-    "whitenoise.runserver_nostatic",
+    # "whitenoise.runserver_nostatic",
     "homepage",
     "meetings",
     "customadmin",
