@@ -34,24 +34,9 @@ services:
       - .env.prod.aws
     depends_on:
       - web
-  caddy:
-    image: caddy
-    ports:
-      - "443:443"
-      - "80:80"
-    depends_on:
-      - web
-    volumes:
-      - $PWD/caddy/Caddyfile:/etc/caddy/Caddyfile
-      - $PWD/caddy/srv:/srv
-      - caddy_data:/data
-      - caddy_config:/config
 
 volumes:
   princetonpy_postgres_prod:
     external: true
   princetonpy_prod_backup:
     external: true
-  caddy_data:
-    external: true
-  caddy_config:

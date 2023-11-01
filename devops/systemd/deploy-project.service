@@ -1,0 +1,16 @@
+[Unit]
+Description=Deploy princetonpy service
+After=docker.service
+Requires=docker.service
+
+[Service]
+TimeoutStartSec=120
+Type=oneshot
+ExecStartPre=/usr/bin/docker compose \
+    -f /home/princetonpy/repos/princetonpy/docker-compose.prod.yml \
+    build web cron
+ExecStart=/usr/bin/systemctl restart princetonpy-cron.service
+ExecStart=/usr/bin/systemctl restart princetonpy-web.service
+
+[Install]
+WantedBy=default.target

@@ -1,0 +1,9 @@
+[Unit]
+Description="Monitor Caddyfile for changes"
+
+[Path]
+PathModified=/home/princetonpy/repos/princetonpy/caddy/Caddyfile
+Unit=deploy-caddy.service
+
+[Install]
+WantedBy=multi-user.target

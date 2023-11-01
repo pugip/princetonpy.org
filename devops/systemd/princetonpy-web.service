@@ -1,0 +1,17 @@
+[Unit]
+Description=PrincetonPy service
+After=docker.service
+Requires=docker.service
+
+[Service]
+TimeoutStartSec=120
+Restart=always
+ExecStart=/usr/bin/docker compose \
+    -f /home/princetonpy/repos/princetonpy/docker-compose.prod.yml \
+    up web
+ExecStop=/usr/bin/docker compose \
+    -f /home/princetonpy/repos/princetonpy/docker-compose.prod.yml \
+    down web
+
+[Install]
+WantedBy=default.target
