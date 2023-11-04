@@ -1,0 +1,3 @@
+Cmnd_Alias DEPLOY_PRINCETONPY = /usr/bin/systemctl start deploy-princetonpy.service
+
+princeton ALL=(ALL) NOPASSWD: DEPLOY_PRINCETONPY
