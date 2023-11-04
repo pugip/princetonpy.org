@@ -15,4 +15,10 @@ python manage.py collectstatic -c --noinput
 python manage.py makemigrations
 python manage.py migrate
 
+if [ -n "$UID" ] && [ -n "$GID" ]; then
+    usermod -u "$UID" app
+    groupmod -g "$GID" app
+    chown -R "$UID":"$GID" "$HOME"
+fi
+
 exec "$@"
