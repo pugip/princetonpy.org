@@ -2,6 +2,8 @@
 
 cp ./systemd/*.{service,path} /etc/systemd/system/
 
+systemctl daemon-reload
+
 systemctl enable deploy-caddy.{path,service}
 systemctl enable deploy-princetonpy.{path,service}
 systemctl enable princetonpy-cron.service
