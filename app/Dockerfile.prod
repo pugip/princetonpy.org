@@ -42,8 +42,8 @@ RUN apt-get install -y netcat
 # create directory for the app user
 RUN mkdir -p /home/app
 
-ENV UID="${UID}:-1001"
-ENV GID="${GID}:-1001"
+ENV UID="${UID:-1001}"
+ENV GID="${GID:-1001}"
 # create the app user
 RUN groupadd -r -g $GID app && useradd app --no-log-init -r -u $UID -g $GID
 
