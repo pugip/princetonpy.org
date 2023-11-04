@@ -2,7 +2,7 @@
 Description="Monitor Caddyfile for changes"
 
 [Path]
-PathModified=/home/princetonpy/repos/princetonpy/caddy/Caddyfile
+PathModified=/home/princetonpy/deploy/caddy/Caddyfile
 Unit=deploy-caddy.service
 
 [Install]

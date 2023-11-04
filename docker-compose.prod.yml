@@ -8,7 +8,7 @@ services:
     env_file:
       - .env.prod.db
   web:
-    image: ghcr.io/pugip/princetonpy.org:release
+    image: ghcr.io/pugip/princetonpy.org/web:release
     command: hypercorn princetonpy.asgi:application --bind 0.0.0.0:8000
     volumes:
       - princetonpy_prod_backup:/prod_backup
@@ -23,9 +23,7 @@ services:
     depends_on:
       - db
   cron:
-    build:
-      context: ./app
-      dockerfile: Dockerfile-cron.prod
+    image: ghcr.io/pugip/princetonpy.org/cron:release
     command: yacron -c /home/app/web/crontab.yaml
     volumes:
       - $PWD/app:/home/app/web
