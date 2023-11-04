@@ -1,0 +1,31 @@
+name: princetonpy.org rsync
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run a one-line script
+        run: echo Hello from Octo Organization
+
+      - name: rsync deployment
+        # You may pin to the exact commit or the version.
+        # uses: Burnett01/rsync-deployments@45d84ad5f6c174f3e0ffc50e9060a9666d09c16e
+        uses: Burnett01/rsync-deployments@6.0.0
+        with:
+          switches: -avzr --delete
+          # path: src/
+          remote_path: ${{ secrets.DEPLOY_PATH }}
+          remote_host: ${{ secrets.DEPLOY_HOST }}
+          remote_port: ${{ secrets.DEPLOY_PORT }}
+          remote_user: ${{ secrets.DEPLOY_USER }}
+          remote_key: ${{ secrets.CI_PRIVATE_KEY }}
+
+
+
