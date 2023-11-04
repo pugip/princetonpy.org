@@ -1,3 +1,4 @@
-Cmnd_Alias DEPLOY_PRINCETONPY = /usr/bin/systemctl start deploy-princetonpy.service
+Cmnd_Alias PRINCETONPY = /usr/bin/systemctl restart princetonpy-cron.service, \
+    /usr/bin/systemctl restart princetonpy-web.service
 
-princeton ALL=(ALL) NOPASSWD: DEPLOY_PRINCETONPY
+princeton ALL=(ALL) NOPASSWD: PRINCETONPY
