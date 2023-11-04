@@ -98,4 +98,4 @@ jobs:
           debug: false
           command: |
             /usr/bin/cp /home/princeton/config/.env.* /home/princeton/deployed/
-            /usr/bin/systemctl start deploy-princetonpy.service
+            sudo /usr/bin/systemctl start deploy-princetonpy.service
