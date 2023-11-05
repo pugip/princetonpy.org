@@ -12,8 +12,8 @@ services:
     command: hypercorn princetonpy.asgi:application --bind 0.0.0.0:8000
     volumes:
       - princetonpy_prod_backup:/prod_backup
-    expose:
-      - 8000
+    ports:
+      - "8000:8000"
     environment:
       - UID=1001
       - GID=1001
