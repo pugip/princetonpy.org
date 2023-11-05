@@ -101,5 +101,4 @@ jobs:
           command: |
             /usr/bin/cp /home/princeton/config/.env.* /home/princeton/deployed/
             pull-image.sh
-            sudo /usr/bin/systemctl restart princetonpy-cron.service
-            sudo /usr/bin/systemctl restart princetonpy-web.service
+            sudo /usr/bin/systemctl restart princetonpy.service
