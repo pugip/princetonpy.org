@@ -26,7 +26,6 @@ services:
     image: ghcr.io/pugip/princetonpy.org/cron:release
     command: yacron -c /home/app/web/crontab.yaml
     volumes:
-      - $PWD/app:/home/app/web
       - princetonpy_prod_backup:/prod_backup
     environment:
       - UID=1001
