@@ -64,6 +64,7 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
 
   copy-to-server:
+    needs: [build-and-push-image]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -86,6 +87,7 @@ jobs:
           remote_key: ${{ secrets.CI_PRIVATE_KEY }}
 
   restart-services:
+    needs: [copy-to-server]
     runs-on: ubuntu-latest
     steps:
       - name: Execute SSH commmands on remote server
@@ -98,10 +100,6 @@ jobs:
           debug: false
           command: |
             /usr/bin/cp /home/princeton/config/.env.* /home/princeton/deployed/
-            echo "Pulling images"
             pull-image.sh
-            echo "Pulled images"
-            echo "starting cron service"
             sudo /usr/bin/systemctl restart princetonpy-cron.service
-            echo "starting web service"
             sudo /usr/bin/systemctl restart princetonpy-web.service
