@@ -1,4 +1,3 @@
-Cmnd_Alias PRINCETONPY = /usr/bin/systemctl restart princetonpy-cron.service, \
-    /usr/bin/systemctl restart princetonpy-web.service
+Cmnd_Alias PRINCETONPY = /usr/bin/systemctl restart princetonpy.service
 
 princeton ALL=(ALL) NOPASSWD: PRINCETONPY
