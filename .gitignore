@@ -8,3 +8,4 @@ caddy/certs/
 
 .vs/
 .vscode/
+*.swp
