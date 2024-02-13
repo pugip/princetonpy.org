@@ -4,7 +4,7 @@ services:
   web:
     build:
       context: ./app
-      dockerfile: Dockerfile.prod
+      dockerfile: Dockerfile.dev
     command: hypercorn princetonpy.asgi:application --bind 0.0.0.0:8000
     ports:
       - "8000:8000"
