@@ -58,7 +58,7 @@ INSTALLED_APPS = [
     "django_ses",
     "tinymce",
     "sorl.thumbnail",
-    "newsletter",
+    "mailinglist",
 ]
 
 SITE_ID = 3
@@ -218,3 +218,7 @@ TINYMCE_DEFAULT_CONFIG = {
     "document_base_url": "https://www.princetonpy.org/",
     "default_link_target": "_blank"
 }
+
+# no trailing slash
+MAILINGLIST_BASE_URL = ""
+MAILINGLIST_DEFAULT_SENDER_EMAIL = ""

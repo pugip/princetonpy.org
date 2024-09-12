@@ -1,8 +1,7 @@
 :root {
+    font-size: calc(1rem + 0.5vw);
     box-sizing: border-box;
-    /*padding-top: 16px;*/
-    /*padding-left: 32px;*/
-        margin: 2em 0;
+    margin: 2em 0;
 }
 
 *,
